@@ -1,0 +1,121 @@
+apply plugin: 'com.android.library'
+apply from: 'maven.gradle'
+apply from: 'bintray.gradle'
+
+android {
+    compileSdkVersion 26
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 26
+        multiDexEnabled true
+        versionCode 1
+        versionName "$mavenVersion"
+        resConfigs "en"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // ---------- Android support
+    implementation "com.android.support:appcompat-v7:$android_support_version"
+    implementation "com.android.support:support-v4:$android_support_version"
+    implementation "com.android.support:design:$android_support_version"
+    implementation "com.android.support:recyclerview-v7:$android_support_version"
+    implementation "com.android.support:cardview-v7:$android_support_version"
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+
+    // ---------- Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+
+    // ---------- OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // ---------- Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // ---------- Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rxbinding_version"
+    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rxpermissions_version"
+
+    implementation 'com.jakewharton.timber:timber:4.5.1'
+
+    // ---------- Font
+    implementation "uk.co.chrisjenx:calligraphy:$calligraphy_version"
+
+    // ---------- Eventbus
+    implementation 'org.greenrobot:eventbus:3.0.0'
+
+    // ---------- Gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    // ---------- For Images
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0"
+    implementation "com.soundcloud.android:android-crop:1.0.1@aar"
+    implementation "de.hdodenhof:circleimageview:2.1.0"
+
+    // ---------- Joda-time
+    implementation "joda-time:joda-time:$joda_time_version"
+
+    // ----------  ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
+
+    // ----------  Room (use 1.1.0-alpha1 for latest alpha)
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    // ----------  Paging
+    implementation "android.arch.paging:runtime:1.0.0-alpha5"
+
+    // ----------  RxJava support for Room
+    implementation "android.arch.persistence.room:rxjava2:1.1.0-alpha2"
+
+    // ----------  ReactiveStreams support for LiveData
+    implementation "android.arch.lifecycle:reactivestreams:1.1.0"
+
+    // ---------- Test
+    androidTestImplementation "com.android.support.test:runner:1.0.1"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.1"
+    testImplementation "junit:junit:4.12"
+    // Test helpers for LiveData
+    testImplementation "android.arch.core:core-testing:1.1.0"
+    // Test helpers for Room
+    testImplementation "android.arch.persistence.room:testing:1.0.0"
+}
+
+gradle.taskGraph.afterTask { Task task, TaskState state ->
+    if (task.name.equals("bintrayUpload")) {
+        println '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+        println "${task.name} ends with state ${state.didWork ? "done" : "FAILED"} "
+        println '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+    }
+}
+

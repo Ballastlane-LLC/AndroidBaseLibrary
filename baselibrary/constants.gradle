@@ -1,0 +1,15 @@
+ext {
+    projectName = 'Android'
+    projectDesc = 'Android Team internal base library'
+
+    packageDesc = 'Android Team internal base library'
+    versionDesc = 'New Version'
+
+    repoUrl = 'https://github.com/Ballastlane-LLC/AndroidBaseLibrary/'
+
+    mavenGroup = 'com.ballastlane.android'
+    mavenArtifactId = 'baselibrary'
+    mavenVersion = '1.0.0'
+
+    bintrayOrg = 'ballastlane'
+}

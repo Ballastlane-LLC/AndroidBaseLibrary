@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion compile_sdk_version
+    defaultConfig {
+        applicationId "com.ballastlane.ballastlanebaseapp"
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode version_code
+        versionName version_name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        qa {
+            try {
+                storeFile file("keystore/debug.keystore")
+                storePassword "android"
+                keyAlias "androiddebugkey"
+                keyPassword "android"
+            } catch (Throwable ignored) {
+                versionNameSuffix '.debug'
+            }
+        }
+
+        release {
+            try {
+                def keystorePropertiesFile = rootProject.file("local.properties")
+                def keystoreProperties = new Properties()
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+                storeFile file("keystore/production.keystore")
+                storePassword keystoreProperties['productionKeyPassword']
+                keyAlias keystoreProperties['productionAlias']
+                keyPassword keystoreProperties['productionAliasPassword']
+            } catch (Throwable e) {
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix ".debug"
+            versionNameSuffix ".debug"
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    applicationVariants.all { variant ->
+        def flavor = variant.mergedFlavor
+        def versionCode = flavor.versionCode
+        flavor.versionCode = versionCode
+    }
+
+    packagingOptions {
+        exclude "META-INF/ASL2.0"
+        exclude "META-INF/LICENSE"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':baselibrary')
+    //implementation 'com.ballastlane.android:baselibrary:1.0.0'
+
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+
+    // ----------  ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
+
+    // ----------  ReactiveStreams support for LiveData
+    implementation "android.arch.lifecycle:reactivestreams:1.1.0"
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    testImplementation 'junit:junit:4.12'
+}
