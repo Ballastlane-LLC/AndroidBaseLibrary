@@ -41,6 +41,7 @@ android {
 // Enable Annotation Processing for Kotlin, required for Dagger
 kapt {
     generateStubs = true
+    correctErrorTypes = true
 }
 
 dependencies {
