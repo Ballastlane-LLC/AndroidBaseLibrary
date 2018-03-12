@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.widget.FrameLayout
 import com.ballastlane.android.baselibrary.common.base.BaseActivity
+import com.ballastlane.android.baselibrary.common.utils.showConfirmation
 import com.ballastlane.android.baselibrary.utils.showConfirmation
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.longToast

@@ -36,9 +36,10 @@ class ZipUtils {
                 val entry = ZipEntry(_files[i].substring(_files[i].lastIndexOf("/") + 1))
                 out.putNextEntry(entry)
                 var count: Int
-                while ((count = origin.read(data, 0, BUFFER)) != -1) {
+                do {
+                    count = origin.read(data, 0, BUFFER)
                     out.write(data, 0, count)
-                }
+                } while ((count) != -1)
                 origin.close()
             }
             out.close()
@@ -76,7 +77,8 @@ class ZipUtils {
             targetLocation = if (targetLocation.endsWith(File.separator)) targetLocation else targetLocation + File.separator
             targetLocation.createDirAsFile()
             var zipEntry: ZipEntry? = null
-            while ((zipEntry = zipInputStream.nextEntry) != null) {
+            do {
+                zipEntry = zipInputStream.nextEntry
                 if (!zipEntry!!.name.contains(MAC_OSX_FOLDER_NAME)) {
                     if (zipEntry.isDirectory) {
                         (targetLocation + zipEntry.name).createDirAsFile()
@@ -84,9 +86,10 @@ class ZipUtils {
                         val byteArrayOutputStream = ByteArrayOutputStream()
                         val buffer = ByteArray(1024)
                         var count: Int
-                        while ((count = zipInputStream.read(buffer)) != -1) {
+                        do {
+                            count = zipInputStream.read(buffer)
                             byteArrayOutputStream.write(buffer, 0, count)
-                        }
+                        } while ((count) != -1)
                         val bytes = byteArrayOutputStream.toByteArray()
                         val fileOutputStream = FileOutputStream(targetLocation + zipEntry.name)
                         val bufferedOutputStream = BufferedOutputStream(fileOutputStream)
@@ -98,7 +101,7 @@ class ZipUtils {
                         byteArrayOutputStream.close()
                     }
                 }
-            }
+            } while ((zipEntry) != null)
             zipInputStream.close()
         }
     }
