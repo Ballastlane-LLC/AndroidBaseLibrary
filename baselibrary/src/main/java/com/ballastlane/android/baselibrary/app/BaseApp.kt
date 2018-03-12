@@ -1,10 +1,10 @@
 package com.ballastlane.android.baselibrary.app
 
 import android.support.multidex.MultiDexApplication
-import android.util.Log
 import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.AppComponent
 import com.ballastlane.android.baselibrary.app.di.AppModule
+import com.ballastlane.android.baselibrary.app.di.DaggerAppComponent
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 /**
@@ -22,15 +22,15 @@ class BaseApp : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-//        component = DaggerAppComponent.builder()
-//                .appModule(AppModule(this))
-//                .build()
-//
-//        component.inject(this)
-//
-//        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
-//                .setDefaultFontPath(getString(R.string.font_regular))
-//                .setFontAttrId(R.attr.fontPath)
-//                .build())
+        component = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
+
+        component.inject(this)
+
+        CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
+                .setDefaultFontPath(getString(R.string.font_regular))
+                .setFontAttrId(R.attr.fontPath)
+                .build())
     }
 }

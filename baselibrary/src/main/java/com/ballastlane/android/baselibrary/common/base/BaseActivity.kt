@@ -150,15 +150,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
                 .setTitle(title)
                 .setMessage(message)
                 .setCancelable(alert.cancellable)
-                .setPositiveButton(positive, if (alert.positiveListener == null)
-                    DialogInterface.OnClickListener { dialog, which -> }
-                else
-                    alert.positiveListener)
+                .setPositiveButton(positive, alert.positiveListener
+                        ?: DialogInterface.OnClickListener { _, _ -> })
         if (alert.negativeListener != null) {
-            builder.setNegativeButton(negative, if (alert.negativeListener == null)
-                DialogInterface.OnClickListener { dialogInterface, i -> }
-            else
-                alert.negativeListener)
+            builder.setNegativeButton(negative, alert.negativeListener)
         }
         builder.show()
     }

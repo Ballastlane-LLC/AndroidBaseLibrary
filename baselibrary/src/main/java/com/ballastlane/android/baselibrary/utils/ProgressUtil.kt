@@ -1,6 +1,5 @@
 package com.ballastlane.android.baselibrary.utils
 
-import android.content.Context
 import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import com.ballastlane.android.baselibrary.R
@@ -11,7 +10,7 @@ import com.ballastlane.android.baselibrary.R
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-fun AlertDialog.Builder.showConfirmation(context: Context, title: Int, message: Int, listener: DialogInterface.OnClickListener): AlertDialog? {
+fun AlertDialog.Builder.showConfirmation(title: Int, message: Int, listener: DialogInterface.OnClickListener): AlertDialog? {
     return this
             .setIcon(android.R.drawable.ic_dialog_alert)
             .setTitle(title)

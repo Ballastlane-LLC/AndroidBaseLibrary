@@ -22,11 +22,9 @@ fun String.saveObjectToDiskAsFile(context: Context, `object`: Any) {
 
 @Throws(IOException::class, ClassNotFoundException::class)
 fun String.getObjectFromDiskAsFile(context: Context): Any? {
-    var fis: FileInputStream? = null
-    var `object`: Any? = null
-    fis = context.openFileInput(this)
+    var fis = context.openFileInput(this)
     val `is` = ObjectInputStream(fis)
-    `object` = `is`.readObject()
+    var `object` = `is`.readObject()
     `is`.close()
     return `object`
 }

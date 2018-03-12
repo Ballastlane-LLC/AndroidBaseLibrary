@@ -26,13 +26,12 @@ class ZipUtils {
      */
     fun zipFiles(_files: Array<String>, _zipFile: String): String? {
         try {
-            var origin: BufferedInputStream? = null
             val dest = FileOutputStream(_zipFile)
             val out = ZipOutputStream(BufferedOutputStream(dest))
             val data = ByteArray(BUFFER)
             for (i in _files.indices) {
                 val fi = FileInputStream(_files[i])
-                origin = BufferedInputStream(fi, BUFFER)
+                var origin = BufferedInputStream(fi, BUFFER)
                 val entry = ZipEntry(_files[i].substring(_files[i].lastIndexOf("/") + 1))
                 out.putNextEntry(entry)
                 var count: Int
@@ -73,12 +72,10 @@ class ZipUtils {
 
         @Throws(IOException::class)
         fun unzip(targetLocation: String, zipInputStream: ZipInputStream) {
-            var targetLocation = targetLocation
-            targetLocation = if (targetLocation.endsWith(File.separator)) targetLocation else targetLocation + File.separator
+            var targetLocation = if (targetLocation.endsWith(File.separator)) targetLocation else targetLocation + File.separator
             targetLocation.createDirAsFile()
-            var zipEntry: ZipEntry? = null
             do {
-                zipEntry = zipInputStream.nextEntry
+                var zipEntry = zipInputStream.nextEntry
                 if (!zipEntry!!.name.contains(MAC_OSX_FOLDER_NAME)) {
                     if (zipEntry.isDirectory) {
                         (targetLocation + zipEntry.name).createDirAsFile()

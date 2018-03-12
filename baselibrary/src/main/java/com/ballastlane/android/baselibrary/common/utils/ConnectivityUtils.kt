@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.os.Build
 import android.telephony.TelephonyManager
 
 /**
@@ -34,7 +35,7 @@ class ConnectivityUtils {
          */
         fun isConnected(context: Context): Boolean {
             val info = ConnectivityUtils.getNetworkInfo(context)
-            return info != null && info!!.isConnected()
+            return info != null && info.isConnected
         }
 
         /**
@@ -45,7 +46,7 @@ class ConnectivityUtils {
          */
         fun isConnectedWifi(context: Context): Boolean {
             val info = ConnectivityUtils.getNetworkInfo(context)
-            return info != null && info!!.isConnected() && info!!.getType() == ConnectivityManager.TYPE_WIFI
+            return info != null && info.isConnected && info.type == ConnectivityManager.TYPE_WIFI
         }
 
         /**
@@ -56,7 +57,7 @@ class ConnectivityUtils {
          */
         fun isConnectedMobile(context: Context): Boolean {
             val info = ConnectivityUtils.getNetworkInfo(context)
-            return info != null && info!!.isConnected() && info!!.getType() == ConnectivityManager.TYPE_MOBILE
+            return info != null && info.isConnected && info.type == ConnectivityManager.TYPE_MOBILE
         }
 
         /**
@@ -66,7 +67,11 @@ class ConnectivityUtils {
          */
         fun isConnectedFast(context: Context): Boolean {
             val info = ConnectivityUtils.getNetworkInfo(context)
-            return info != null && info!!.isConnected() && ConnectivityUtils.isConnectionFast(info!!.getType(), info!!.getSubtype())
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+                info != null && info.isConnected && ConnectivityUtils.isConnectionFast(info.type, info.subtype)
+            } else {
+                TODO("VERSION.SDK_INT < CUPCAKE")
+            }
         }
 
         /**
@@ -76,10 +81,9 @@ class ConnectivityUtils {
          * @return
          */
         fun isConnectionFast(type: Int, subType: Int): Boolean {
-            return if (type == ConnectivityManager.TYPE_WIFI) {
-                true
-            } else if (type == ConnectivityManager.TYPE_MOBILE) {
-                when (subType) {
+            return when (type) {
+                ConnectivityManager.TYPE_WIFI -> true
+                ConnectivityManager.TYPE_MOBILE -> when (subType) {
                     TelephonyManager.NETWORK_TYPE_1xRTT -> false // ~ 50-100 kbps
                     TelephonyManager.NETWORK_TYPE_CDMA -> false // ~ 14-64 kbps
                     TelephonyManager.NETWORK_TYPE_EDGE -> false // ~ 50-100 kbps
@@ -91,9 +95,9 @@ class ConnectivityUtils {
                     TelephonyManager.NETWORK_TYPE_HSUPA -> true // ~ 1-23 Mbps
                     TelephonyManager.NETWORK_TYPE_UMTS -> true // ~ 400-7000 kbps
                 /*
-     * Above API level 7, make sure to set android:targetSdkVersion
-     * to appropriate level to use these
-     */
+         * Above API level 7, make sure to set android:targetSdkVersion
+         * to appropriate level to use these
+         */
                     TelephonyManager.NETWORK_TYPE_EHRPD // API level 11
                     -> true // ~ 1-2 Mbps
                     TelephonyManager.NETWORK_TYPE_EVDO_B // API level 9
@@ -108,8 +112,7 @@ class ConnectivityUtils {
                     TelephonyManager.NETWORK_TYPE_UNKNOWN -> false
                     else -> false
                 }
-            } else {
-                false
+                else -> false
             }
         }
     }
