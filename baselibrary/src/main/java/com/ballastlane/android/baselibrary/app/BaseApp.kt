@@ -11,7 +11,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-class BaseApp : MultiDexApplication() {
+open class BaseApp : MultiDexApplication() {
 
     private val TAG = "TAG_${BaseApp::class.java.simpleName}"
 

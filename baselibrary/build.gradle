@@ -47,6 +47,8 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    kapt 'com.android.databinding:compiler:3.0.1'
+
     // ---------- Android support
     implementation "com.android.support:appcompat-v7:$android_support_version"
     implementation "com.android.support:support-v4:$android_support_version"
@@ -91,10 +93,14 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.2'
 
     // ---------- For Images
-    implementation "com.squareup.picasso:picasso:$picasso_version"
-    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0"
+//    implementation "com.squareup.picasso:picasso:$picasso_version"
+//    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0"
     implementation "com.soundcloud.android:android-crop:1.0.1@aar"
     implementation "de.hdodenhof:circleimageview:2.1.0"
+
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
 
     // ---------- Joda-time
     implementation "joda-time:joda-time:$joda_time_version"

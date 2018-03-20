@@ -20,7 +20,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-@Module(includes = arrayOf(NetworkModule::class))
+@Module(includes = [(NetworkModule::class)])
 class RetrofitModule {
 
     @Provides
