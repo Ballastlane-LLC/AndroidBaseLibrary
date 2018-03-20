@@ -3,10 +3,9 @@ package com.ballastlane.android.baselibrary.app.di
 import android.content.res.Resources
 import com.ballastlane.android.baselibrary.app.BaseApp
 import com.ballastlane.android.baselibrary.app.modules.MoshiModule
-import com.ballastlane.android.baselibrary.app.modules.PicassoModule
-import com.ballastlane.android.baselibrary.app.modules.api.ApiModule
+import com.ballastlane.android.baselibrary.app.modules.GlideModule
+import com.bumptech.glide.RequestManager
 import com.squareup.moshi.Moshi
-import com.squareup.picasso.Picasso
 import dagger.Component
 
 /**
@@ -14,10 +13,10 @@ import dagger.Component
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 @AppScope
-@Component(modules = arrayOf(PicassoModule::class, MoshiModule::class, ApiModule::class))
+@Component(modules = [(GlideModule::class), (MoshiModule::class)])
 interface AppComponent {
     fun inject(app: BaseApp): Unit
-    fun picasso(): Picasso
+    fun glide(): RequestManager
     fun moshi(): Moshi
     fun resources(): Resources
 }

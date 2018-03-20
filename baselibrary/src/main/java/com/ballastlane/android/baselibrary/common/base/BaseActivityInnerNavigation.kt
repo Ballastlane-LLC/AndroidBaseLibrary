@@ -53,15 +53,14 @@ abstract class BaseActivityInnerNavigation : BaseActivity() {
     }
 
     @CallSuper
-    protected fun updateActionBarUpIndicator() {
+    fun updateActionBarUpIndicator() {
         if (getNavigationController<BaseActivityInnerNavigationController>().titleStack.size > 1) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             if (homeUpIndicator != HOME_UP_INDICATOR_NONE) {
-                val upIndicator: Drawable
-                if (homeUpIndicator != HOME_UP_INDICATOR_ARROW) {
-                    upIndicator = ContextCompat.getDrawable(this, homeUpIndicator)
+                val upIndicator: Drawable = if (homeUpIndicator != HOME_UP_INDICATOR_ARROW) {
+                    ContextCompat.getDrawable(this, homeUpIndicator)!!
                 } else {
-                    upIndicator = drawerToggleDelegate!!.themeUpIndicator
+                    drawerToggleDelegate!!.themeUpIndicator
                 }
                 supportActionBar!!.setHomeAsUpIndicator(upIndicator)
             }

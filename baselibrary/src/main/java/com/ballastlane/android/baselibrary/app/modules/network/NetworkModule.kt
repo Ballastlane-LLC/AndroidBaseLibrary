@@ -16,7 +16,7 @@ import java.io.File
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-@Module(includes = arrayOf(AppModule::class))
+@Module(includes = [(AppModule::class)])
 class NetworkModule {
 
     @Provides
