@@ -11,8 +11,7 @@ import com.ballastlane.android.baselibrary.common.base.BaseActivity
  */
 abstract class MVVMContract {
 
-    interface Model {
-    }
+    interface Model {}
 
     interface View {
         val activity: BaseActivity
