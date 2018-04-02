@@ -284,7 +284,7 @@ abstract class BaseAdapter<T, H : BaseAdapter.BaseViewHolder<*>> : RecyclerView.
 
         @get:CallSuper
         val context: Context = itemView.context
-        private val binding: ViewDataBinding = DataBindingUtil.bind(itemView)
+        private val binding: ViewDataBinding = DataBindingUtil.bind(itemView)!!
 
         @CallSuper
         protected fun <B : ViewDataBinding> getBinding(): B {

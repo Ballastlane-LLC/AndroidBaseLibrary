@@ -12,11 +12,9 @@ import com.ballastlane.android.baselibrary.common.base.BaseActivity
 abstract class MVVMContract {
 
     interface Model {
-        val view: View
     }
 
     interface View {
-        val model: Model
         val activity: BaseActivity
         fun inflateLayout(container: ViewGroup? = null): android.view.View?
         fun showToast(message: String, longTime: Boolean = true)
@@ -25,5 +23,10 @@ abstract class MVVMContract {
         fun showProgress(message: Int, cancelable: Boolean = false)
         fun hideProgress()
         fun showConfirmation(title: Int, message: Int, listener: DialogInterface.OnClickListener): AlertDialog?
+    }
+
+    interface ViewModel {
+        val view: View
+        val model: Model
     }
 }

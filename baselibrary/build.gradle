@@ -47,8 +47,6 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    kapt 'com.android.databinding:compiler:3.0.1'
-
     // ---------- Android support
     implementation "com.android.support:appcompat-v7:$android_support_version"
     implementation "com.android.support:support-v4:$android_support_version"
