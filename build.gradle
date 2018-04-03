@@ -20,8 +20,8 @@ buildscript {
     ext {
         // Versions of the build
         min_sdk_version = '17'
-        target_sdk_version = '27'
-        compile_sdk_version = 27
+        target_sdk_version = '26'
+        compile_sdk_version = 26
         version_code = 1
         version_name = '1.0'
 
@@ -32,7 +32,7 @@ buildscript {
         kotlin_version = '1.2.30'
 
         // Versions of dependencies
-        android_support_version = '27.0.2'
+        android_support_version = '26.1.0'
         calligraphy_version = '2.3.0'
         dagger_version = '2.14.1'
         joda_time_version = '2.9.4'

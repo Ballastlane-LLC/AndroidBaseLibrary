@@ -27,7 +27,7 @@ class AuthenticationInterceptor @Inject constructor(
                 ?.newBuilder()
                 ?.build()
 
-        val response = chain?.proceed(request)
+        val response = chain?.proceed(request!!)
         val code = response?.code()
 
         if (code == Constant.Network.Status.UNAUTHORIZED ||

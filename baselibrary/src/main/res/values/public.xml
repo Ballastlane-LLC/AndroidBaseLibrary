@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Date Format-->
+    <public name="date_format_general" type="string"></public>
+
+    <!--Dimens-->
+    <public name="default_extra_small_size" type="dimen"></public>
+    <public name="default_small_size" type="dimen"></public>
+    <public name="default_medium_size" type="dimen"></public>
+    <public name="default_large_size" type="dimen"></public>
+    <public name="default_extra_large_size" type="dimen"></public>
+
+    <!--IDs-->
+    <public name="coordinator" type="id"></public>
+
+    <!--Styles-->
+    <public name="ButtonsStyle" type="style"></public>
+    <public name="EditTextStyle" type="style"></public>
+    <public name="CheckboxStyle" type="style"></public>
+    <public name="TextStyleLarge" type="style"></public>
+    <public name="TextStyleMedium" type="style"></public>
+    <public name="TextStyleSmall" type="style"></public>
+    
+</resources>
