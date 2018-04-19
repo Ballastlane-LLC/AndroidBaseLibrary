@@ -19,3 +19,41 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+#General
+-keepattributes Signature
+-keepattributes *Annotation*
+-keepattributes EnclosingMethod
+
+# Timber
+-dontwarn org.jetbrains.annotations.**
+
+# Joda Time
+-dontwarn org.joda.convert.FromString
+-dontwarn org.joda.convert.ToString
+
+#Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+#Event Bus
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.** { *; }
+
+#BaseLibrary
+-keepnames class com.ballastlane.android.baselibrary.**
+-keep class com.ballastlane.android.baselibrary.**{
+    public <methods>;
+    protected <methods>;
+    public static <methods>;
+}

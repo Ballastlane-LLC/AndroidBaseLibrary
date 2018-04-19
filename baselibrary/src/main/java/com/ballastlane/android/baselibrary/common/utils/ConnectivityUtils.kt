@@ -11,7 +11,7 @@ import android.telephony.TelephonyManager
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/12/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-class ConnectivityUtils {
+open class ConnectivityUtils {
 
     private val TAG = "TAG_${ConnectivityUtils::class.java.simpleName}"
 

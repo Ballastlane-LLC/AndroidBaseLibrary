@@ -84,7 +84,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
         rxLifeObserver.addDisposableForever(disposable)
     }
 
-    open fun <N : BaseActivityNavigationController> getNavigationController(): N {
+    fun <N : BaseActivityNavigationController> getNavigationController(): N {
         if (navigationController == null) {
             navigationController = BaseActivityNavigationController(supportFragmentManager)
         }

@@ -15,7 +15,7 @@ import retrofit2.adapter.rxjava2.HttpException
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-class ApiErrorFactory {
+open class ApiErrorFactory {
 
     fun parse(ctx: Context, error: Throwable, listener: ApiErrorListener) {
         if (isRelatedToNetwork(error)) {

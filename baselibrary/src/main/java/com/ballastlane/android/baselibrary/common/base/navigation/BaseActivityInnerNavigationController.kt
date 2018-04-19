@@ -12,7 +12,7 @@ import java.util.ArrayList
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-class BaseActivityInnerNavigationController(weakRefActivity: BaseActivityInnerNavigation,
+open class BaseActivityInnerNavigationController(weakRefActivity: BaseActivityInnerNavigation,
                                             @param:IdRes val innerNavContainerId: Int)
     : BaseActivityNavigationController(weakRefActivity.supportFragmentManager) {
 

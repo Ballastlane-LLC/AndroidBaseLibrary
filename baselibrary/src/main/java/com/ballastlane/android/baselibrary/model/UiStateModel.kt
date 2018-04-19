@@ -5,7 +5,7 @@ package com.ballastlane.android.baselibrary.model
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-class UiStateModel<T> {
+open class UiStateModel<T> {
 
     var isInProgress: Boolean = false
     var isError: Boolean = false

@@ -12,7 +12,7 @@ import java.lang.reflect.Type
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-class DoubleTypedAdapter : JsonSerializer<Double> {
+open class DoubleTypedAdapter : JsonSerializer<Double> {
 
     override fun serialize(src: Double?, typeOfSrc: Type, context: JsonSerializationContext): JsonElement? {
         return if (src == null || src == -1.0) null else JsonPrimitive(src)

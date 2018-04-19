@@ -12,7 +12,7 @@ import java.lang.reflect.Type
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-class LongTypedAdapter : JsonSerializer<Long> {
+open class LongTypedAdapter : JsonSerializer<Long> {
 
     override fun serialize(src: Long?, typeOfSrc: Type, context: JsonSerializationContext): JsonElement? {
         return if (src == null || src == -1L) null else JsonPrimitive(src)

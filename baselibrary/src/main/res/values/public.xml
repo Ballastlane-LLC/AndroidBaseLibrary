@@ -21,5 +21,31 @@
     <public name="TextStyleLarge" type="style"></public>
     <public name="TextStyleMedium" type="style"></public>
     <public name="TextStyleSmall" type="style"></public>
-    
+
+    <!--Strings-->
+    <public name="app_name" type="string"></public>
+    <public name="url_api_current" type="string"></public>
+    <public name="yes" type="string"></public>
+    <public name="no" type="string"></public>
+
+    <!--Fonts-->
+    <public name="font_black" type="string"></public>
+    <public name="font_bold" type="string"></public>
+    <public name="font_extra_bold" type="string"></public>
+    <public name="font_extra_light" type="string"></public>
+    <public name="font_light" type="string"></public>
+    <public name="font_medium" type="string"></public>
+    <public name="font_regular" type="string"></public>
+    <public name="font_semi_bold" type="string"></public>
+    <public name="font_thin" type="string"></public>
+
+    <!--Errors-->
+    <public name="permissions_denied_title" type="string"></public>
+    <public name="alert_permissions_denied" type="string"></public>
+    <public name="network_error_code_general" type="string"></public>
+    <public name="network_error_no_internet_connection" type="string"></public>
+    <public name="error_unknown" type="string"></public>
+    <public name="error_internal_server" type="string"></public>
+    <public name="error_connection_unavailable" type="string"></public>
+
 </resources>

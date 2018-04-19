@@ -12,7 +12,7 @@ import java.lang.reflect.Type
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-class CollectionTypedAdapter : JsonSerializer<Collection<*>> {
+open class CollectionTypedAdapter : JsonSerializer<Collection<*>> {
 
     override fun serialize(src: Collection<*>?, typeOfSrc: Type, context: JsonSerializationContext): JsonElement? {
         if (src == null)

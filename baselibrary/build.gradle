@@ -145,7 +145,7 @@ dependencies {
 }
 
 gradle.taskGraph.afterTask { Task task, TaskState state ->
-    if (task.name.equals("bintrayUpload")) {
+    if (task.name == "bintrayUpload") {
         println '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
         println "${task.name} ends with state ${state.didWork ? "done" : "FAILED"} "
         println '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'

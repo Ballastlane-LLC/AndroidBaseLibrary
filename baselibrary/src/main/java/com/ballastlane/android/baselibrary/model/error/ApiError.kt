@@ -7,7 +7,7 @@ import java.io.Serializable
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-class ApiError(code: Int) : IllegalStateException(), Serializable {
+open class ApiError(code: Int) : IllegalStateException(), Serializable {
 
     var errorCode: Int = 0
 

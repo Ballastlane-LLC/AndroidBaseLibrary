@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-class BaseFragmentNavigator {
+open class BaseFragmentNavigator {
 
     private val TAG = "TAG_${BaseFragmentNavigator::class.java.simpleName}"
 

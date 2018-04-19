@@ -8,7 +8,7 @@ import com.ballastlane.android.baselibrary.R
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-class RestDelegate {
+open class RestDelegate {
 
     val noInternetStringID = R.string.network_error_no_internet_connection
 
