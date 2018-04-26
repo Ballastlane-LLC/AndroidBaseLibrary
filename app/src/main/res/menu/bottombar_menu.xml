@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_about"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:showAsAction="ifRoom"
+        android:title="@string/nav_about" />
+
+    <item
+        android:id="@+id/menu_sessions"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:showAsAction="ifRoom"
+        android:title="@string/nav_surveys" />
+
+    <item
+        android:id="@+id/menu_payment"
+        android:icon="@android:drawable/ic_lock_idle_charging"
+        android:showAsAction="ifRoom"
+        android:title="@string/nav_payments" />
+    <item
+        android:id="@+id/menu_account"
+        android:icon="@android:drawable/ic_lock_idle_charging"
+        android:showAsAction="ifRoom"
+        android:title="@string/nav_account" />
+</menu>

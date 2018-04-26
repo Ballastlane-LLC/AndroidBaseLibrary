@@ -1,0 +1,68 @@
+<resources>
+
+    <!-- General -->
+    <string name="app_name">Texas &amp; AM</string>
+
+    <!-- Navigation -->
+    <string name="nav_about">About</string>
+    <string name="nav_surveys">Surveys</string>
+    <string name="nav_payments">Payments</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_validate_email">Enter Email</string>
+    <string name="nav_login">login</string>
+    <string name="nav_register">Register</string>
+
+    <!-- Validate email -->
+    <string name="hint_email">Email</string>
+    <string name="enter_email_label">Please enter the email in your invitation</string>
+    <string name="enter_email_btn_text">Continue</string>
+
+    <!-- Login -->
+    <string name="email_test">xxxxx@texasam.com</string>
+    <string name="login_label">Login or register with your email address</string>
+    <string name="login_btn_text">Login</string>
+    <string name="login_recover_password"><u>RETRIEVE PASSWORD</u></string>
+    <string name="login_support"><u>SUPPORT</u></string>
+    <string name="hint_password">Password</string>
+
+    <!-- Register -->
+    <string name="btn_register">REGISTER</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_contact_email">Contact email</string>
+    <string name="hint_code">Code</string>
+    <string name="hint_phone_number">Phone number</string>
+
+    <!-- About -->
+    <string name="lorem"><![CDATA[Lorem ipsum dolor amet drinking vinegar four loko organic,
+    health goth vape schlitz la croix farm-to-table +1. Cray venmo PBR&B hashtag blog try-hard.
+     Poke enamel pin VHS health goth poutine bitters flannel irony prism kombucha. Kickstarter
+      gastropub humblebrag ethical man braid.  Swag +1 brooklyn iPhone, kitsch direct trade etsy
+       before they sold out affogato YOLO. Ennui irony hell of letterpress. Ramps normcore banjo
+        kitsch, poke edison bulb drinking vinegar yr beard celiac. Leggings semiotics messenger
+        bag jean shorts iceland twee single-origin coffee chambray master cleanse edison bulb.
+         Bushwick glossier normcore 90\'s salvia kickstarter, master cleanse quinoa pinterest
+         cardigan direct trade church-key post-ironic bitters austin. Brunch health goth blue
+         bottle poutine leggings coloring book, art party selfies venmo copper mug street art
+         typewriter banh thundercats. Lorem ipsum dolor amet drinking vinegar four loko organic,
+    health goth vape schlitz la croix farm-to-table +1. Cray venmo PBR&B hashtag blog try-hard.
+     Poke enamel pin VHS health goth poutine bitters flannel irony prism kombucha. Kickstarter
+      gastropub humblebrag ethical man braid.  Swag +1 brooklyn iPhone, kitsch direct trade etsy
+       before they sold out affogato YOLO. Ennui irony hell of letterpress. Ramps normcore banjo
+        kitsch, poke edison bulb drinking vinegar yr beard celiac. Leggings semiotics messenger
+        bag jean shorts iceland twee single-origin coffee chambray master cleanse edison bulb.
+         Bushwick glossier normcore 90\'s salvia kickstarter, master cleanse quinoa pinterest
+         cardigan direct trade church-key post-ironic bitters austin. Brunch health goth blue
+         bottle poutine leggings coloring book, art party selfies venmo copper mug street art
+         typewriter banh thundercats. ]]></string>
+
+    <!-- Surveys -->
+
+    <!-- Account -->
+
+    <!-- Payments -->
+
+    <!-- Errors -->
+
+</resources>

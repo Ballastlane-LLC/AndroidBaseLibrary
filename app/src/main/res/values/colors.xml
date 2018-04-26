@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <color name="colorPrimary">#4a94da</color>
+    <color name="colorPrimaryDark">#4D4c4a4a</color>
+    <color name="colorAccent">#39c775</color>
+    <color name="text_color">@android:color/black</color>
+
+    <!-- Basics -->
+    <color name="hint_gray">#bbc8cf</color>
+    <color name="white">@android:color/white</color>
+    <color name="white_65">#a6ffffff</color>
+    <color name="window_background">#FFF1F1F1</color>
+    <color name="white_70">@color/window_background</color>
+    <color name="black">#000000</color>
+    <color name="black_30">#4c000000</color>
+    <color name="black_22">#39000000</color>
+    <color name="black_overlay">#66000000</color>
+
+</resources>
