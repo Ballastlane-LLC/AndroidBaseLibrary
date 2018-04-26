@@ -1,6 +1,8 @@
 package com.ballastlane.android.baselibrary.model
 
 import android.webkit.URLUtil
+import com.ballastlane.android.baselibrary.R
+import com.ballastlane.android.baselibrary.app.BaseApp
 import com.ballastlane.android.baselibrary.utils.CollectionTypedAdapter
 import com.ballastlane.android.baselibrary.utils.DoubleTypedAdapter
 import com.ballastlane.android.baselibrary.utils.LongTypedAdapter
@@ -26,35 +28,43 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class ServiceConfiguration<S : BaseService<I>, I>
 /**
- * @param baseURL           must be a valid URL
- * @param apiServiceFactory must extend from the BaseService¡
+ *
+ * @param baseURL
+ * @param interfaceClass must be an interface
+ */
+
+/**
+ *
+ * @param baseURL must be a valid URL
+ * @param apiServiceFactory must extend from the BaseService
+ * @param apiInterfaceServiceFactory must be an interface
  */
 (val baseURL: String, val apiServiceFactory: ApiServiceFactory<S>,
- apiInterfaceServiceClass: Class<*>) {
+ apiInterfaceServiceClass: Class<I>) {
     val interfaceClass: Class<I>
-    val apiServiceClass: Class<out BaseService<I>>
+    val apiServiceClass: Class<BaseService<I>>
 
     var converter = GsonConverterFactory.create(GsonBuilder()
             .registerTypeHierarchyAdapter(Collection::class.java, CollectionTypedAdapter())
             .registerTypeHierarchyAdapter(Long::class.java, LongTypedAdapter())
             .registerTypeHierarchyAdapter(Double::class.java, DoubleTypedAdapter())
+            .setDateFormat(BaseApp.component.resources().getString(R.string.date_format_general))
             .excludeFieldsWithoutExposeAnnotation()
-            .create())
+            .create())!!
     /**
      * Remember to subclass the ServiceConfiguration instance for runtime operations.
      * Suggested for this field
-     *
      * @return an arrayList of headers
      */
     /**
      * deprecated use setInterceptor instead
-     *
      * @param headers
      */
     @get:Deprecated("use setInterceptor instead")
     var headers = ArrayList<Header>()
     private val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     /**
+     *
      * @return by Default an OkClient
      */
     var client: OkHttpClient? = null
@@ -74,7 +84,6 @@ class ServiceConfiguration<S : BaseService<I>, I>
     /**
      * Remember to subclass the ServiceConfiguration instance for runtime operations.
      * Suggested for this field
-     *
      * @return a log level for retrofit @see retrofit.RestAdapter.LogLevel
      */
     var logLevel: HttpLoggingInterceptor.Level
@@ -84,8 +93,7 @@ class ServiceConfiguration<S : BaseService<I>, I>
         }
 
     init {
-
-        if (isValidUrl(baseURL)) {
+        if (baseURL.isBlank()) {
             throw RuntimeException("url cannot be empty!!!")
         } else if (!URLUtil.isValidUrl(baseURL)) {
             throw RuntimeException("url is not valid!!!")
@@ -103,10 +111,6 @@ class ServiceConfiguration<S : BaseService<I>, I>
             throw RuntimeException("InstantiationException", e)
         }
 
-    }
-
-    private fun isValidUrl(baseURL: String?): Boolean {
-        return baseURL == null || baseURL.trim { it <= ' ' }.isEmpty()
     }
 
 

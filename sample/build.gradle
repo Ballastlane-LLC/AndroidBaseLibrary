@@ -60,6 +60,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+
+        qa {
+            minifyEnabled false
+            applicationIdSuffix '.qa'
+            versionNameSuffix '.qa'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.qa
+        }
     }
 
     applicationVariants.all { variant ->
