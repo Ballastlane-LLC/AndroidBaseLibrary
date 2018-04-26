@@ -16,22 +16,19 @@ import retrofit2.http.Path;
 
 public interface ApiServiceInterface {
 
+    interface Public {
 
-    //Users
+        @HEAD("/users/{username}")
+        Single<Response<ResponseBody>> checkEmail(@Path("username") String username);
 
-    @HEAD("/users/{username}")
-    Single<Response<ResponseBody>> checkEmail(@Path("username") String username);
+        @POST("/users/auth")
+        Observable<LogonResponse> logonUser(@Body LogonRequest userLogoFn);
 
-    @POST("/users/auth")
-    Observable<LogonResponse> logonUser(@Body LogonRequest userLogoFn);
+    }
 
-
-    @GET("users/me")
-    Observable<User> getUser();
-
-//    @PATCH("users/me")
-//    Observable<User> updateUser(@Body UserRequest userRequest);
-
-
+    interface Private {
+        @GET("users/me")
+        Observable<User> getUser();
+    }
 
 }

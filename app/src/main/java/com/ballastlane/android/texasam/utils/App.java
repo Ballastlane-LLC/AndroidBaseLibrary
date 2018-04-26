@@ -1,9 +1,11 @@
 package com.ballastlane.android.texasam.utils;
 
 import com.ballastlane.android.baselibrary.app.BaseApp;
+import com.ballastlane.android.baselibrary.app.modules.network.NetworkModule;
 import com.ballastlane.android.texasam.app.di.ApiServicesModule;
 import com.ballastlane.android.texasam.app.di.DaggerTexasamComponent;
 import com.ballastlane.android.texasam.app.di.TexasamComponent;
+import com.ballastlane.android.texasam.data.managers.remote.AuthenticationInterceptor;
 
 import timber.log.Timber;
 
@@ -22,7 +24,8 @@ public class App extends BaseApp {
         initPreferences();
 
         texasamComponent = DaggerTexasamComponent.builder()
-                .appModule(appMpdule)
+                .networkModule(new NetworkModule(new AuthenticationInterceptor(new Object())))
+                .appModule(appModule)
                 .apiServicesModule(new ApiServicesModule())
                 .build();
     }

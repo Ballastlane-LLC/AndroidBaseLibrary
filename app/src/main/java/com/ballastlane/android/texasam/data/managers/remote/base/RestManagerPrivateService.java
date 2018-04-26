@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers;
  * @author Daniela Perez danielaperez@kogimobile.com on 5/26/17.
  */
 
-public class RestManagerPrivateService extends BaseService<ApiServiceInterface> {
+public class RestManagerPrivateService extends BaseService<ApiServiceInterface.Private> {
 
     private static final String IMAGE_PART = "signature";
     private static final String MULTI_PART_FORM_DATA = "multipart/form-data";
@@ -21,7 +21,7 @@ public class RestManagerPrivateService extends BaseService<ApiServiceInterface> 
      * @param apiServiceInterface
      * @deprecated
      */
-    public RestManagerPrivateService(ApiServiceInterface apiServiceInterface) {
+    public RestManagerPrivateService(ApiServiceInterface.Private apiServiceInterface) {
         super(apiServiceInterface);
     }
 
@@ -37,12 +37,12 @@ public class RestManagerPrivateService extends BaseService<ApiServiceInterface> 
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread());
 //    }
-
-    public Observable<User> getUser() {
-        return (getApiService()).getUser()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
+//
+//    public Observable<User> getUser() {
+//        return (getApiService()).getUser()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
+//    }
 
 
 

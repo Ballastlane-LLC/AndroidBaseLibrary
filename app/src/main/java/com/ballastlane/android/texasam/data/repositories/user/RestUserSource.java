@@ -1,5 +1,8 @@
 package com.ballastlane.android.texasam.data.repositories.user;
 
+import android.util.Log;
+
+import com.ballastlane.android.texasam.R;
 import com.ballastlane.android.texasam.data.entities.User;
 import com.ballastlane.android.texasam.data.managers.remote.base.ApiServiceInterface;
 import com.ballastlane.android.texasam.data.managers.remote.base.RestClient;
@@ -8,10 +11,13 @@ import com.ballastlane.android.texasam.data.managers.remote.logon.LogonRequest;
 import com.ballastlane.android.texasam.data.managers.remote.logon.LogonResponse;
 import com.ballastlane.android.texasam.utils.App;
 
+import java.util.Timer;
+
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * @author Daniela Perez danielaperez@kogimobile.com on 4/24/18.
@@ -35,8 +41,8 @@ public class RestUserSource implements RepositoryUserDataSource {
 
     @Override
     public Single<Response<ResponseBody>> checkEmail(String username) {
-        return getPublicService()
-                .checkEmail(username);
+        Log.d("test", App.texasamComponent.resources().getString(R.string.app_name));
+        return getPublicService().checkEmail(username);
     }
 
     @Override
@@ -53,15 +59,13 @@ public class RestUserSource implements RepositoryUserDataSource {
     }
 
 
-    private ApiServiceInterface getPublicService() {
+    private ApiServiceInterface.Public getPublicService() {
         return App.texasamComponent.serviceInterfaceApi();
     }
 
-    private RestManagerPrivateService getPrivateService() {
-        return (RestManagerPrivateService) RestClient
-                .getInstance()
-                .getRestClientManager()
-                .getService(RestManagerPrivateService.class);
+    private ApiServiceInterface.Private getPrivateService() {
+        return App.texasamComponent.serviceInterfaceAuthApi();
+
     }
 
 }

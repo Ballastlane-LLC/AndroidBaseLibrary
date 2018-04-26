@@ -16,17 +16,16 @@ import retrofit2.Retrofit;
  */
 @Module(includes = {RetrofitModule.class})
 public class ApiServicesModule {
-//    @Provides
-//    @AppScope
-//    @AuthenticationQualifier
-//    public ApiServiceInterface.Auth provideApiServiceInterfaceAuth(Retrofit retrofit) {
-//        return retrofit.create(ApiServiceInterface.Auth.class);
-//    }
 
     @Provides
     @AppScope
-    public ApiServiceInterface provideApiServiceInterface(Retrofit retrofit) {
-        return retrofit.create(ApiServiceInterface.class);
+    public ApiServiceInterface.Private provideApiServiceInterfaceAuth(@AuthenticationQualifier Retrofit retrofit) {
+        return retrofit.create(ApiServiceInterface.Private.class);
+    }
+
+    @Provides
+    @AppScope
+    public ApiServiceInterface.Public provideApiServiceInterface(Retrofit retrofit) {
+        return retrofit.create(ApiServiceInterface.Public.class);
     }
 }
-

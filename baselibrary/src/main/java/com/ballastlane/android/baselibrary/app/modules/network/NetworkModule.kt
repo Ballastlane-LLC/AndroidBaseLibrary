@@ -7,6 +7,7 @@ import com.ballastlane.android.baselibrary.utils.Constant
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -17,7 +18,7 @@ import java.io.File
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 @Module(includes = [(AppModule::class)])
-class NetworkModule {
+class NetworkModule(private val authenticationInterceptor: Interceptor) {
 
     @Provides
     @AppScope
@@ -46,7 +47,6 @@ class NetworkModule {
     @AuthenticationQualifier
     fun provideAuthenticatedOkHttpClient(
             httpLoggingInterceptor: HttpLoggingInterceptor,
-            authenticationInterceptor: AuthenticationInterceptor,
             cache: Cache): OkHttpClient =
             OkHttpClient.Builder()
                     .cache(cache)

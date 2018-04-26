@@ -5,6 +5,8 @@ import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.AppComponent
 import com.ballastlane.android.baselibrary.app.di.AppModule
 import com.ballastlane.android.baselibrary.app.di.DaggerAppComponent
+import com.ballastlane.android.baselibrary.app.modules.network.AuthenticationInterceptor
+import com.ballastlane.android.baselibrary.app.modules.network.NetworkModule
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 /**
@@ -19,15 +21,16 @@ open class BaseApp : MultiDexApplication() {
         lateinit var component: AppComponent
     }
 
-    lateinit var appMpdule: AppModule
+    lateinit var appModule: AppModule
 
     override fun onCreate() {
         super.onCreate()
 
-        appMpdule = AppModule(this)
+        appModule = AppModule(this)
 
         component = DaggerAppComponent.builder()
-                .appModule(appMpdule)
+                .appModule(appModule)
+                .networkModule(NetworkModule(AuthenticationInterceptor()))
                 .build()
 
         component.inject(this)

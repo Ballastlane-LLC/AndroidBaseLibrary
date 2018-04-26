@@ -1,6 +1,9 @@
 package com.ballastlane.android.texasam.app.di;
 
+import com.ballastlane.android.baselibrary.app.di.AppComponent;
 import com.ballastlane.android.baselibrary.app.di.AppScope;
+import com.ballastlane.android.baselibrary.app.modules.GlideModule;
+import com.ballastlane.android.baselibrary.app.modules.MoshiModule;
 import com.ballastlane.android.texasam.data.managers.remote.base.ApiServiceInterface;
 
 
@@ -13,8 +16,8 @@ import dagger.Component;
  */
 
 @AppScope
-@Component(modules = {ApiServicesModule.class})
-public interface TexasamComponent {
-    ApiServiceInterface serviceInterfaceApi();
-  //  ApiServiceInterface.Auth serviceInterfaceAuthApi();
+@Component(modules = {ApiServicesModule.class, GlideModule.class, MoshiModule.class})
+public interface TexasamComponent extends AppComponent{
+    ApiServiceInterface.Public serviceInterfaceApi();
+    ApiServiceInterface.Private serviceInterfaceAuthApi();
 }

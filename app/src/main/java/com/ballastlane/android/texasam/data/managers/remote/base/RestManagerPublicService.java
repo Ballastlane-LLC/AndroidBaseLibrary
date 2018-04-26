@@ -27,16 +27,5 @@ public class RestManagerPublicService extends BaseService<ApiServiceInterface> {
         super(apiServiceInterface);
     }
 
-    public Observable<LogonResponse> logon(LogonRequest logonRequest){
-        return (getApiService()).logonUser(logonRequest)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    public Single<Response<ResponseBody>> checkEmail(String username){
-        return (getApiService()).checkEmail(username)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
 
 }
