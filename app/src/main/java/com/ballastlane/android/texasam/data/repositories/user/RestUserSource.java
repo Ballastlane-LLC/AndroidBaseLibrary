@@ -1,11 +1,12 @@
 package com.ballastlane.android.texasam.data.repositories.user;
 
 import com.ballastlane.android.texasam.data.entities.User;
+import com.ballastlane.android.texasam.data.managers.remote.base.ApiServiceInterface;
 import com.ballastlane.android.texasam.data.managers.remote.base.RestClient;
 import com.ballastlane.android.texasam.data.managers.remote.base.RestManagerPrivateService;
-import com.ballastlane.android.texasam.data.managers.remote.base.RestManagerPublicService;
 import com.ballastlane.android.texasam.data.managers.remote.logon.LogonRequest;
 import com.ballastlane.android.texasam.data.managers.remote.logon.LogonResponse;
+import com.ballastlane.android.texasam.utils.App;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -29,7 +30,7 @@ public class RestUserSource implements RepositoryUserDataSource {
     @Override
     public Observable<LogonResponse> logon(LogonRequest logonRequest) {
         return getPublicService()
-                .logon(logonRequest);
+                .logonUser(logonRequest);
     }
 
     @Override
@@ -52,11 +53,8 @@ public class RestUserSource implements RepositoryUserDataSource {
     }
 
 
-    private RestManagerPublicService getPublicService() {
-        return (RestManagerPublicService) RestClient
-                .getInstance()
-                .getRestClientManager()
-                .getService(RestManagerPublicService.class);
+    private ApiServiceInterface getPublicService() {
+        return App.texasamComponent.serviceInterfaceApi();
     }
 
     private RestManagerPrivateService getPrivateService() {

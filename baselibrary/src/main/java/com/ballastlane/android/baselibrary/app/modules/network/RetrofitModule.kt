@@ -5,16 +5,17 @@ import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.AppScope
 import com.ballastlane.android.baselibrary.app.di.AuthenticationQualifier
 import com.ballastlane.android.baselibrary.app.di.BaseUrlQualifier
-import com.ballastlane.android.baselibrary.app.di.FlatObjectsQualifier
-import com.squareup.moshi.Moshi
+import com.ballastlane.android.baselibrary.utils.DateTimeConverter
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import org.joda.time.DateTime
 import retrofit2.CallAdapter
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
@@ -30,12 +31,15 @@ class RetrofitModule {
 
     @Provides
     @AppScope
-    fun provideConverterFactory(@FlatObjectsQualifier moshi: Moshi): Converter.Factory =
-            MoshiConverterFactory.create(moshi)
+    fun provideCallAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
 
     @Provides
     @AppScope
-    fun provideCallAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
+    fun provideGson(): Gson {
+        val gsonBuilder = GsonBuilder()
+        gsonBuilder.registerTypeAdapter(DateTime::class.java, DateTimeConverter())
+        return gsonBuilder.create()
+    }
 
     @Provides
     @AppScope
@@ -43,12 +47,12 @@ class RetrofitModule {
     fun provideAuthenticatedRetrofit(
             @BaseUrlQualifier baseUrl: String,
             @AuthenticationQualifier client: OkHttpClient,
-            converter: Converter.Factory,
+            gson: Gson,
             callAdapter: CallAdapter.Factory): Retrofit =
             Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(client)
-                    .addConverterFactory(converter)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(callAdapter)
                     .build()
 
@@ -57,12 +61,12 @@ class RetrofitModule {
     fun provideRetrofit(
             @BaseUrlQualifier baseUrl: String,
             client: OkHttpClient,
-            converter: Converter.Factory,
+            gson: Gson,
             callAdapter: CallAdapter.Factory): Retrofit =
             Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(client)
-                    .addConverterFactory(converter)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(callAdapter)
                     .build()
 }

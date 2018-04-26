@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="base_url" translatable="false">http://172.23.10.45:1337/v1</string>
+    <string name="url_api_current" translatable="false">http://172.23.10.45:1337/v1/</string>
 
 </resources>

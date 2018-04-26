@@ -19,11 +19,15 @@ open class BaseApp : MultiDexApplication() {
         lateinit var component: AppComponent
     }
 
+    lateinit var appMpdule: AppModule
+
     override fun onCreate() {
         super.onCreate()
 
+        appMpdule = AppModule(this)
+
         component = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
+                .appModule(appMpdule)
                 .build()
 
         component.inject(this)

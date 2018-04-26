@@ -1,8 +1,9 @@
 package com.ballastlane.android.texasam.utils;
 
-import android.content.Context;
-
 import com.ballastlane.android.baselibrary.app.BaseApp;
+import com.ballastlane.android.texasam.app.di.ApiServicesModule;
+import com.ballastlane.android.texasam.app.di.DaggerTexasamComponent;
+import com.ballastlane.android.texasam.app.di.TexasamComponent;
 
 import timber.log.Timber;
 
@@ -12,12 +13,19 @@ import timber.log.Timber;
 
 public class App extends BaseApp {
 
+    public static TexasamComponent texasamComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
         iniTimber();
         initPreferences();
-        }
+
+        texasamComponent = DaggerTexasamComponent.builder()
+                .appModule(appMpdule)
+                .apiServicesModule(new ApiServicesModule())
+                .build();
+    }
 
     private void initPreferences() {
         PreferencesUtils.init(this);
