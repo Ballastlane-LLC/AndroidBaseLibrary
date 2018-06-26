@@ -5,7 +5,10 @@ import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.AppScope
 import com.ballastlane.android.baselibrary.app.di.AuthenticationQualifier
 import com.ballastlane.android.baselibrary.app.di.BaseUrlQualifier
+import com.ballastlane.android.baselibrary.utils.CollectionTypedAdapter
 import com.ballastlane.android.baselibrary.utils.DateTimeConverter
+import com.ballastlane.android.baselibrary.utils.DoubleTypedAdapter
+import com.ballastlane.android.baselibrary.utils.LongTypedAdapter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -38,6 +41,10 @@ class RetrofitModule {
     fun provideGson(): Gson {
         val gsonBuilder = GsonBuilder()
         gsonBuilder.registerTypeAdapter(DateTime::class.java, DateTimeConverter())
+        gsonBuilder.registerTypeHierarchyAdapter(Collection::class.java, CollectionTypedAdapter())
+        gsonBuilder.registerTypeHierarchyAdapter(Long::class.java, LongTypedAdapter())
+        gsonBuilder.registerTypeHierarchyAdapter(Double::class.java, DoubleTypedAdapter())
+        gsonBuilder.excludeFieldsWithoutExposeAnnotation()
         return gsonBuilder.create()
     }
 

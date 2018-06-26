@@ -38,8 +38,8 @@ class NetworkModule(private val authenticationInterceptor: Interceptor) {
 
     @Provides
     @AppScope
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-        level = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().setLevel(Level.BODY)
     }
 
     @Provides

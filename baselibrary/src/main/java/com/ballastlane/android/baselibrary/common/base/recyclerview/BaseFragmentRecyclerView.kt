@@ -202,11 +202,11 @@ abstract class BaseFragmentRecyclerView<M> : BaseFragment() {
         adapter!!.refreshItems(refreshItems)
     }
 
-    protected fun onRefreshItemsLoadSuccess(): Consumer<Pair<List<M>, Boolean>> {
+    open fun onRefreshItemsLoadSuccess(): Consumer<Pair<List<M>, Boolean>> {
         return Consumer { }
     }
 
-    protected fun onRefreshItemsLoadFail(): Consumer<Throwable> {
+    open fun onRefreshItemsLoadFail(): Consumer<Throwable> {
         return Consumer { }
     }
 

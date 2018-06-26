@@ -49,3 +49,8 @@
     protected <methods>;
     public static <methods>;
 }
+
+-ignorewarnings
+-keep class * {
+    public private *;
+}
