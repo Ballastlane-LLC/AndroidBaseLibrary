@@ -13,9 +13,11 @@ import io.reactivex.subjects.PublishSubject
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-abstract class BasePermissionActivity: BaseActivity() {
+abstract class BasePermissionActivity : BaseActivity() {
 
     abstract val permissions: Array<String>
+
+    abstract val required: Boolean
 
     private val TAG = "TAG_${BasePermissionActivity::class.java.simpleName}"
 
@@ -34,20 +36,25 @@ abstract class BasePermissionActivity: BaseActivity() {
         Log.d(TAG, "request permissions")
         requestDisposable?.dispose()
         requestDisposable = rxPermissions.request(*permissions)
-                .subscribe{
+                .subscribe {
                     if (it) {
                         Log.d(TAG, "permissions accepted")
                         acceptedPermissionsSubject.onNext(Any())
                     } else {
                         Log.d(TAG, "permissions rejected")
-                        showRejectedPermissionsDialog()
+                        if (required) {
+                            showRejectedPermissionsDialog()
+                        }
                     }
                 }
     }
 
     private fun showRejectedPermissionsDialog() {
         val title = resources.getString(R.string.permissions_denied_title)
-        val message = resources.getString(R.string.alert_permissions_denied)
+        val message = resources.getString(
+                if (required)
+                    R.string.alert_permissions_denied_required else
+                    R.string.alert_permissions_denied_no_required)
         val buttonText = resources.getString(android.R.string.ok)
         val builder = AlertDialog.Builder(this)
         builder.apply {
@@ -55,7 +62,9 @@ abstract class BasePermissionActivity: BaseActivity() {
             setTitle(title)
             setMessage(message)
             setNeutralButton(buttonText, { dialog, _ ->
-                request()
+                if (required) {
+                    request()
+                }
                 dialog.dismiss()
             })
         }
