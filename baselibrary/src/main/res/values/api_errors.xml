@@ -3,7 +3,7 @@
 
     <string name="permissions_denied_title">Denied permissions</string>
     <string name="alert_permissions_denied_required">Without these permissions the application does not work correctly.</string>
-    <string name="alert_permissions_denied_no_required">Without these permissions, some things in the application could not work correctly.</string>
+    <string name="alert_permissions_denied_no_required">You have not allow the permissions</string>
 
     <!--Network Error-->
     <string name="network_error_code_general">Api General Error</string>
