@@ -3,6 +3,7 @@ package com.ballastlane.android.baselibrary.common.base
 import android.content.Context
 import android.content.DialogInterface
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.util.Log
@@ -12,8 +13,6 @@ import com.ballastlane.android.baselibrary.R
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
-import android.Manifest.permission
-import android.os.Build
 
 
 /**
@@ -31,6 +30,7 @@ abstract class BasePermissionActivity : BaseActivity() {
     private val TAG = "TAG_${BasePermissionActivity::class.java.simpleName}"
 
     private val acceptedPermissionsSubject = PublishSubject.create<Any>()
+
     private val rxPermissions by lazy { RxPermissions(this) }
 
     var requestDisposable: Disposable? = null
@@ -55,14 +55,16 @@ abstract class BasePermissionActivity : BaseActivity() {
 
     private fun showRationale(): Boolean {
         var showRationale = true
+        var anyFirstTime = false
         permissions.forEach {
-            showRationale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                shouldShowRequestPermissionRationale(it) && showRationale
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                showRationale = shouldShowRequestPermissionRationale(it) && showRationale
+                anyFirstTime = isFirstTimeAskingPermission(baseContext, it) || anyFirstTime
             } else {
-                true
+                showRationale = true
             }
         }
-        return showRationale
+        return showRationale || anyFirstTime
     }
 
     private fun dialogPreview() {
@@ -87,11 +89,11 @@ abstract class BasePermissionActivity : BaseActivity() {
     }
 
     private fun request() {
-
         Log.d(TAG, "request permissions")
         requestDisposable?.dispose()
         requestDisposable = rxPermissions.request(*permissions)
                 .subscribe {
+                    answerdCheck()
                     if (it) {
                         Log.d(TAG, "permissions accepted")
                         acceptedPermissionsSubject.onNext(Any())
@@ -102,6 +104,12 @@ abstract class BasePermissionActivity : BaseActivity() {
                         }
                     }
                 }
+    }
+
+    private fun answerdCheck() {
+        permissions.forEach {
+            firstTimeAskingPermission(baseContext, it, false)
+        }
     }
 
     private fun showRejectedPermissionsDialog() {
@@ -131,5 +139,15 @@ abstract class BasePermissionActivity : BaseActivity() {
                 this(context.resources.getString(titleRes),
                         context.resources.getString(messageRes),
                         context.resources.getString(buttonTextRes))
+    }
+
+
+    fun firstTimeAskingPermission(context: Context, permission: String, isFirstTime: Boolean) {
+        val sharedPreference = context.getSharedPreferences(TAG, Context.MODE_PRIVATE)
+        sharedPreference.edit().putBoolean(permission, isFirstTime).apply()
+    }
+
+    fun isFirstTimeAskingPermission(context: Context, permission: String): Boolean {
+        return context.getSharedPreferences(TAG, Context.MODE_PRIVATE).getBoolean(permission, true)
     }
 }

@@ -9,7 +9,7 @@ ext {
 
     mavenGroup = 'com.ballastlane.android'
     mavenArtifactId = 'baselibrary'
-    mavenVersion = '1.3.9'
+    mavenVersion = '1.4.0'
 
     bintrayOrg = 'ballastlane'
 }
