@@ -12,6 +12,8 @@ import com.ballastlane.android.baselibrary.R
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
+import android.Manifest.permission
+import android.os.Build
 
 
 /**
@@ -36,7 +38,7 @@ abstract class BasePermissionActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (dialogPreview != null && !hasPermission()) {
+        if (dialogPreview != null && !hasPermission() && showRationale()) {
             dialogPreview()
         } else {
             request()
@@ -49,6 +51,18 @@ abstract class BasePermissionActivity : BaseActivity() {
             checkVal = (checkCallingOrSelfPermission(it) == PackageManager.PERMISSION_GRANTED) && checkVal
         }
         return checkVal
+    }
+
+    private fun showRationale(): Boolean {
+        var showRationale = true
+        permissions.forEach {
+            showRationale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                shouldShowRequestPermissionRationale(it) && showRationale
+            } else {
+                true
+            }
+        }
+        return showRationale
     }
 
     private fun dialogPreview() {
