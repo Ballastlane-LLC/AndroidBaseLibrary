@@ -1,6 +1,8 @@
 package com.ballastlane.android.baselibrary.app.modules.network
 
 import android.content.Context
+import android.content.res.Resources
+import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.*
 import com.ballastlane.android.baselibrary.utils.Constant
 import dagger.Module
@@ -11,6 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
@@ -46,20 +49,40 @@ class NetworkModule(private val authenticationInterceptor: Interceptor) {
     @AuthenticationQualifier
     fun provideAuthenticatedOkHttpClient(
             httpLoggingInterceptor: HttpLoggingInterceptor,
-            cache: Cache): OkHttpClient =
+            cache: Cache,
+            resources: Resources): OkHttpClient =
             OkHttpClient.Builder()
                     .cache(cache)
                     .addInterceptor(authenticationInterceptor)
                     .addInterceptor(httpLoggingInterceptor)
+                    .readTimeout(
+                            resources.getInteger(R.integer.read_timeout_seconds).toLong(),
+                            TimeUnit.SECONDS)
+                    .writeTimeout(
+                            resources.getInteger(R.integer.write_timeout_seconds).toLong(),
+                            TimeUnit.SECONDS)
+                    .connectTimeout(
+                            resources.getInteger(R.integer.connect_timeout_seconds).toLong(),
+                            TimeUnit.SECONDS)
                     .build()
 
     @Provides
     @AppScope
     fun provideOkHttpClient(
             httpLoggingInterceptor: HttpLoggingInterceptor,
-            cache: Cache): OkHttpClient =
+            cache: Cache,
+            resources: Resources): OkHttpClient =
             OkHttpClient.Builder()
                     .cache(cache)
                     .addInterceptor(httpLoggingInterceptor)
+                    .readTimeout(
+                            resources.getInteger(R.integer.read_timeout_seconds).toLong(),
+                            TimeUnit.SECONDS)
+                    .writeTimeout(
+                            resources.getInteger(R.integer.write_timeout_seconds).toLong(),
+                            TimeUnit.SECONDS)
+                    .connectTimeout(
+                            resources.getInteger(R.integer.connect_timeout_seconds).toLong(),
+                            TimeUnit.SECONDS)
                     .build()
 }
