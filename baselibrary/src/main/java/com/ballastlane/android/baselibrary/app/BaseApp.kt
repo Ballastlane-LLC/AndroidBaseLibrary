@@ -10,6 +10,7 @@ import com.ballastlane.android.baselibrary.app.di.AppModule
 import com.ballastlane.android.baselibrary.app.di.DaggerAppComponent
 import com.ballastlane.android.baselibrary.app.modules.network.AuthenticationInterceptor
 import com.ballastlane.android.baselibrary.app.modules.network.NetworkModule
+import timber.log.Timber
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 /**
@@ -38,6 +39,17 @@ open class BaseApp : MultiDexApplication() {
                 .setDefaultFontPath(getString(R.string.font_regular))
                 .setFontAttrId(R.attr.fontPath)
                 .build())
+
+        iniTimber()
+    }
+
+    private fun iniTimber() {
+        Timber.plant(
+                object : Timber.DebugTree() {
+                    override fun createStackElementTag(element: StackTraceElement): String? {
+                        return super.createStackElementTag(element) + ':'.toString() + element.lineNumber
+                    }
+                })
     }
 
     companion object {
