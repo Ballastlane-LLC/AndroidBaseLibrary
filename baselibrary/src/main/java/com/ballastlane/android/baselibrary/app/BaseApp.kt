@@ -1,6 +1,9 @@
 package com.ballastlane.android.baselibrary.app
 
+import android.app.Activity
+import android.content.Context
 import android.support.multidex.MultiDexApplication
+import android.view.inputmethod.InputMethodManager
 import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.AppComponent
 import com.ballastlane.android.baselibrary.app.di.AppModule
@@ -16,10 +19,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 open class BaseApp : MultiDexApplication() {
 
     private val TAG = "TAG_${BaseApp::class.java.simpleName}"
-
-    companion object {
-        lateinit var component: AppComponent
-    }
 
     lateinit var appModule: AppModule
 
@@ -39,5 +38,22 @@ open class BaseApp : MultiDexApplication() {
                 .setDefaultFontPath(getString(R.string.font_regular))
                 .setFontAttrId(R.attr.fontPath)
                 .build())
+    }
+
+    companion object {
+        lateinit var component: AppComponent
+
+        fun closeKeyboard(activity: Activity?) {
+            activity?.let {
+                val view = activity.currentFocus
+
+                view?.let {
+                    val inputManager = activity
+                            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputManager.hideSoftInputFromWindow(view.windowToken,
+                            InputMethodManager.HIDE_NOT_ALWAYS)
+                }
+            }
+        }
     }
 }
