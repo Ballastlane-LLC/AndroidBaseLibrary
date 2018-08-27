@@ -45,7 +45,9 @@ abstract class BaseView(override val activity: BaseActivity): FrameLayout(activi
         else activity.toast(message)
     }
 
-    override fun showConfirmation(title: Int, message: Int, listener: DialogInterface.OnClickListener): AlertDialog? {
+    override fun showConfirmation(title: Int,
+                                  message: Int,
+                                  listener: DialogInterface.OnClickListener): AlertDialog? {
         return showConfirmation(activity, title, message, listener)
     }
 }

@@ -68,7 +68,8 @@ open class ConnectivityUtils {
         fun isConnectedFast(context: Context): Boolean {
             val info = ConnectivityUtils.getNetworkInfo(context)
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
-                info != null && info.isConnected && ConnectivityUtils.isConnectionFast(info.type, info.subtype)
+                info != null && info.isConnected && ConnectivityUtils.isConnectionFast(info.type,
+                        info.subtype)
             } else {
                 TODO("VERSION.SDK_INT < CUPCAKE")
             }
@@ -94,10 +95,10 @@ open class ConnectivityUtils {
                     TelephonyManager.NETWORK_TYPE_HSPA -> true // ~ 700-1700 kbps
                     TelephonyManager.NETWORK_TYPE_HSUPA -> true // ~ 1-23 Mbps
                     TelephonyManager.NETWORK_TYPE_UMTS -> true // ~ 400-7000 kbps
-                /*
-         * Above API level 7, make sure to set android:targetSdkVersion
-         * to appropriate level to use these
-         */
+                    /*
+             * Above API level 7, make sure to set android:targetSdkVersion
+             * to appropriate level to use these
+             */
                     TelephonyManager.NETWORK_TYPE_EHRPD // API level 11
                     -> true // ~ 1-2 Mbps
                     TelephonyManager.NETWORK_TYPE_EVDO_B // API level 9
@@ -108,7 +109,7 @@ open class ConnectivityUtils {
                     -> false // ~25 kbps
                     TelephonyManager.NETWORK_TYPE_LTE // API level 11
                     -> true // ~ 10+ Mbps
-                // Unknown
+                    // Unknown
                     TelephonyManager.NETWORK_TYPE_UNKNOWN -> false
                     else -> false
                 }

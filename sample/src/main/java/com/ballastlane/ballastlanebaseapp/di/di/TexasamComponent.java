@@ -2,7 +2,6 @@ package com.ballastlane.ballastlanebaseapp.di.di;
 
 import com.ballastlane.android.baselibrary.app.di.AppScope;
 
-
 import dagger.Component;
 
 

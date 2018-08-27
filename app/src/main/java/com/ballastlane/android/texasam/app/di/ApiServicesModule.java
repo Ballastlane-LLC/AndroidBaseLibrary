@@ -5,7 +5,6 @@ import com.ballastlane.android.baselibrary.app.di.AuthenticationQualifier;
 import com.ballastlane.android.baselibrary.app.modules.network.RetrofitModule;
 import com.ballastlane.android.texasam.data.managers.remote.base.ApiServiceInterface;
 
-
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;

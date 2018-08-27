@@ -14,9 +14,12 @@ import java.lang.reflect.Type
 
 open class CollectionTypedAdapter : JsonSerializer<Collection<*>> {
 
-    override fun serialize(src: Collection<*>?, typeOfSrc: Type, context: JsonSerializationContext): JsonElement? {
+    override fun serialize(
+            src: Collection<*>?,
+            typeOfSrc: Type,
+            context: JsonSerializationContext): JsonElement? {
+
         if (src == null)
-        // exclusion is made here
             return null
 
         val array = JsonArray()

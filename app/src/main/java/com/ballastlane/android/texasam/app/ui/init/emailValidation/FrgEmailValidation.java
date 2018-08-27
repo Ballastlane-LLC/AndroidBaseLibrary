@@ -18,7 +18,6 @@ import com.ballastlane.android.texasam.app.ui.register.ActivityRegister;
 import com.ballastlane.android.texasam.databinding.FrgEmailvalidationBinding;
 import com.ballastlane.android.texasam.utils.PreferencesUtils;
 
-import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
 import okhttp3.ResponseBody;
 import retrofit2.Response;

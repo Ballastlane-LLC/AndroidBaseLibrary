@@ -8,10 +8,10 @@ import com.ballastlane.android.baselibrary.app.modules.network.NetworkModule
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
+import com.bumptech.glide.load.model.GlideUrl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import com.bumptech.glide.load.model.GlideUrl
 import java.io.InputStream
 
 
@@ -25,7 +25,10 @@ class GlideModule {
     @Provides
     @AppScope
     fun provideGlide(@AppQualifier context: Context, downloader: OkHttpClient): RequestManager {
-        Glide.get(context).registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(downloader))
+        Glide.get(context).registry.replace(
+                GlideUrl::class.java,
+                InputStream::class.java,
+                OkHttpUrlLoader.Factory(downloader))
         return Glide.with(context)
     }
 

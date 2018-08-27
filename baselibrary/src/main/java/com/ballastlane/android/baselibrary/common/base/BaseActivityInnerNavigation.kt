@@ -5,7 +5,6 @@ import android.support.annotation.CallSuper
 import android.support.v4.content.ContextCompat
 import android.view.MenuItem
 import com.ballastlane.android.baselibrary.common.base.navigation.BaseActivityInnerNavigationController
-import com.ballastlane.android.baselibrary.common.base.navigation.BaseActivityNavigationController
 import java.util.*
 
 /**
@@ -16,9 +15,7 @@ abstract class BaseActivityInnerNavigation : BaseActivity() {
 
     private val TAG = "TAG_${BaseActivityInnerNavigation::class.java.simpleName}"
 
-
     private var homeUpIndicator = HOME_UP_INDICATOR_NONE
-
 
     val titleStack: ArrayList<String>
         get() = (getNavigationController<BaseActivityInnerNavigationController>()).titleStack
@@ -27,7 +24,11 @@ abstract class BaseActivityInnerNavigation : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                if (getNavigationController<BaseActivityInnerNavigationController>().titleStack.size == 0 && homeUpIndicator != HOME_UP_INDICATOR_NONE || getNavigationController<BaseActivityInnerNavigationController>().titleStack.size > 0) {
+                if (getNavigationController<BaseActivityInnerNavigationController>()
+                                .titleStack.size == 0 &&
+                        homeUpIndicator != HOME_UP_INDICATOR_NONE ||
+                        getNavigationController<BaseActivityInnerNavigationController>()
+                                .titleStack.size > 0) {
                     onBackPressed()
                 }
                 return true
@@ -46,7 +47,9 @@ abstract class BaseActivityInnerNavigation : BaseActivity() {
     fun updateActionBarTitle() {
         if (supportActionBar != null) {
             if (getNavigationController<BaseActivityInnerNavigationController>().titleStack.size > 0) {
-                supportActionBar!!.setTitle(getNavigationController<BaseActivityInnerNavigationController>().titleStack[getNavigationController<BaseActivityInnerNavigationController>().titleStack.size - 1])
+                supportActionBar!!.title = getNavigationController<BaseActivityInnerNavigationController>()
+                        .titleStack[getNavigationController<BaseActivityInnerNavigationController>()
+                        .titleStack.size - 1]
                 updateActionBarUpIndicator()
             }
         }
@@ -69,7 +72,9 @@ abstract class BaseActivityInnerNavigation : BaseActivity() {
         }
         if (homeUpIndicator != HOME_UP_INDICATOR_NONE) {
             if (homeUpIndicator != HOME_UP_INDICATOR_ARROW) {
-                supportActionBar!!.setHomeAsUpIndicator(ContextCompat.getDrawable(this, homeUpIndicator))
+                supportActionBar!!.setHomeAsUpIndicator(ContextCompat.getDrawable(
+                        this,
+                        homeUpIndicator))
             } else {
                 supportActionBar!!.setHomeAsUpIndicator(drawerToggleDelegate!!.themeUpIndicator)
             }
@@ -95,7 +100,9 @@ abstract class BaseActivityInnerNavigation : BaseActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         if (getNavigationController<BaseActivityInnerNavigationController>().titleStack.size > 0) {
-            getNavigationController<BaseActivityInnerNavigationController>().titleStack.removeAt(getNavigationController<BaseActivityInnerNavigationController>().titleStack.size - 1)
+            getNavigationController<BaseActivityInnerNavigationController>().titleStack
+                    .removeAt(getNavigationController<BaseActivityInnerNavigationController>()
+                            .titleStack.size - 1)
             if (getNavigationController<BaseActivityInnerNavigationController>().titleStack.size > 0) {
                 updateActionBarTitle()
             }

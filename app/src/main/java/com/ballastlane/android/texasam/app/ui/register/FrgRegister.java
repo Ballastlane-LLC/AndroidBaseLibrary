@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import com.ballastlane.android.baselibrary.common.base.BaseFragment;
 import com.ballastlane.android.texasam.R;
 import com.ballastlane.android.texasam.app.events.EventsEmailValidation;
-import com.ballastlane.android.texasam.app.ui.register.viewmodel.ViewModelRegister;
 import com.ballastlane.android.texasam.app.ui.main.ActivityMain;
+import com.ballastlane.android.texasam.app.ui.register.viewmodel.ViewModelRegister;
 import com.ballastlane.android.texasam.databinding.FrgRegisterBinding;
 
 /**

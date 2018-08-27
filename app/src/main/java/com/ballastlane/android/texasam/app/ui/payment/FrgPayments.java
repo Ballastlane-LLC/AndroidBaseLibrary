@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 
 import com.ballastlane.android.baselibrary.common.base.BaseFragment;
 import com.ballastlane.android.texasam.R;
-import com.ballastlane.android.texasam.app.ui.about.ViewModelAbout;
 import com.ballastlane.android.texasam.app.ui.payment.viewmodel.ViewModelPayment;
-import com.ballastlane.android.texasam.databinding.FrgAboutBinding;
 import com.ballastlane.android.texasam.databinding.FrgPaymentsBinding;
 
 /**

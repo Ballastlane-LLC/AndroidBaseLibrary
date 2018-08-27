@@ -6,7 +6,7 @@ import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import com.ballastlane.android.baselibrary.common.base.BaseActivityInnerNavigation
 import java.lang.ref.WeakReference
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.

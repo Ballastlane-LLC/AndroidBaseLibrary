@@ -4,7 +4,6 @@ import android.support.multidex.MultiDexApplication
 import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.AppComponent
 import com.ballastlane.android.baselibrary.app.di.AppModule
-import com.ballastlane.android.baselibrary.app.di.DaggerAppComponent
 import com.ballastlane.android.baselibrary.app.modules.network.AuthenticationInterceptor
 import com.ballastlane.android.baselibrary.app.modules.network.NetworkModule
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig

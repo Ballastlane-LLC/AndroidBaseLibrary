@@ -4,7 +4,6 @@ import com.ballastlane.android.baselibrary.common.base.BaseActivityInnerNavigati
 import com.ballastlane.android.baselibrary.common.base.BaseFragment;
 import com.ballastlane.android.baselibrary.common.base.navigation.BaseActivityInnerNavigationController;
 import com.ballastlane.android.texasam.R;
-import com.ballastlane.android.texasam.app.ui.register.FrgRegister;
 
 import java.util.HashMap;
 

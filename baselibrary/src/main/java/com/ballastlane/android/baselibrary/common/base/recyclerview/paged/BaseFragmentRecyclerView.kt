@@ -8,9 +8,6 @@ import android.support.annotation.CallSuper
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ballastlane.android.baselibrary.common.base.BaseFragment
-import io.reactivex.Single
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
 
 /**
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.

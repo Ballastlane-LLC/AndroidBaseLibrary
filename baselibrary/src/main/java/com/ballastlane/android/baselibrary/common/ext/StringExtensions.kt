@@ -19,19 +19,27 @@ fun String.isEmail(): Boolean {
 }
 
 fun String?.ifEmptyThenReturn(blankDefault: CharSequence): String {
-    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() || this.toString().equals("null", ignoreCase = true)) blankDefault.toString() else this.toString()
+    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() ||
+            this.toString().equals("null", ignoreCase = true)) blankDefault.toString()
+    else this.toString()
 }
 
 fun String?.ifNotEmptyThenPrefix(prefix: CharSequence, blankDefault: CharSequence): String {
-    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() || this.toString().equals("null", ignoreCase = true)) blankDefault.toString() else prefix.toString() + this.toString()
+    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() ||
+            this.toString().equals("null", ignoreCase = true)) blankDefault.toString()
+    else prefix.toString() + this.toString()
 }
 
 fun String?.ifNotEmptyThenSuffix(suffix: CharSequence, blankDefault: CharSequence): String {
-    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() || this.toString().equals("null", ignoreCase = true)) blankDefault.toString() else this.toString() + suffix.toString()
+    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() ||
+            this.toString().equals("null", ignoreCase = true)) blankDefault.toString()
+    else this.toString() + suffix.toString()
 }
 
 fun String?.ifNotEmptyThenPrefixAndSuffix(prefix: CharSequence, suffix: CharSequence, blankDefault: CharSequence): String {
-    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() || this.toString().equals("null", ignoreCase = true)) blankDefault.toString() else prefix.toString() + (this.toString() + suffix.toString())
+    return if (this == null || this.toString().trim { it <= ' ' }.isEmpty() ||
+            this.toString().equals("null", ignoreCase = true)) blankDefault.toString()
+    else prefix.toString() + (this.toString() + suffix.toString())
 }
 
 fun String?.share(ctx: Context, title: String) {

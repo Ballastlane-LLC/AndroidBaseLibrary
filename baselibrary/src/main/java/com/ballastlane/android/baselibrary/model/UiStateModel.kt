@@ -15,7 +15,11 @@ open class UiStateModel<T> {
 
     constructor() {}
 
-    constructor(inProgress: Boolean, isError: Boolean, isSuccess: Boolean, errorMessage: String?, data: T?) {
+    constructor(inProgress: Boolean,
+                isError: Boolean,
+                isSuccess: Boolean,
+                errorMessage: String?,
+                data: T?) {
         this.isInProgress = inProgress
         this.isError = isError
         this.isSuccess = isSuccess
@@ -30,15 +34,30 @@ open class UiStateModel<T> {
         }
 
         fun <T> loading(): UiStateModel<T> {
-            return UiStateModel<T>(true, false, false, null, null)
+            return UiStateModel<T>(
+                    true,
+                    false,
+                    false,
+                    null,
+                    null)
         }
 
         fun <T> success(data: T): UiStateModel<T> {
-            return UiStateModel<T>(false, false, true, null, data)
+            return UiStateModel<T>(
+                    false,
+                    false,
+                    true,
+                    null,
+                    data)
         }
 
         fun <T> failure(errorMessage: String): UiStateModel<T> {
-            return UiStateModel<T>(false, true, false, errorMessage, null)
+            return UiStateModel<T>(
+                    false,
+                    true,
+                    false,
+                    errorMessage,
+                    null)
         }
     }
 }

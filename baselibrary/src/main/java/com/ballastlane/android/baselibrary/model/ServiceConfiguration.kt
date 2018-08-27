@@ -6,17 +6,14 @@ import com.ballastlane.android.baselibrary.app.BaseApp
 import com.ballastlane.android.baselibrary.utils.CollectionTypedAdapter
 import com.ballastlane.android.baselibrary.utils.DoubleTypedAdapter
 import com.ballastlane.android.baselibrary.utils.LongTypedAdapter
-
 import com.google.gson.GsonBuilder
-
-import java.util.ArrayList
-import java.util.concurrent.TimeUnit
-
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.internal.http2.Header
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * @author kogiandroid on 1/14/16.
@@ -25,13 +22,10 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Use this class to put the custom configuration for the Services instances on your apps.
  * Feel free to subclass this for overwriting the getters on the app class in the way you prefer.
  * The type of the class should be the same as the ApiService
+ * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
+
 class ServiceConfiguration<S : BaseService<I>, I>
-/**
- *
- * @param baseURL
- * @param interfaceClass must be an interface
- */
 
 /**
  *
@@ -93,16 +87,19 @@ class ServiceConfiguration<S : BaseService<I>, I>
         }
 
     init {
+
         if (baseURL.isBlank()) {
             throw RuntimeException("url cannot be empty!!!")
         } else if (!URLUtil.isValidUrl(baseURL)) {
             throw RuntimeException("url is not valid!!!")
         }
-        //            apiInterfaceService = apiInterfaceServiceFactory.factory();
+
         this.interfaceClass = apiInterfaceServiceClass as Class<I>
+
         if (!apiInterfaceServiceClass.isInterface) {
             throw RuntimeException("Interface is not an interface!!!")
         }
+
         try {
             apiServiceClass = apiServiceFactory.factory().javaClass
         } catch (e: IllegalAccessException) {
@@ -110,7 +107,6 @@ class ServiceConfiguration<S : BaseService<I>, I>
         } catch (e: InstantiationException) {
             throw RuntimeException("InstantiationException", e)
         }
-
     }
 
 

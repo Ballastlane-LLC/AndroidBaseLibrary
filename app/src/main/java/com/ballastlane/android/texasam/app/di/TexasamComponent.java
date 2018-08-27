@@ -6,7 +6,6 @@ import com.ballastlane.android.baselibrary.app.modules.GlideModule;
 import com.ballastlane.android.baselibrary.app.modules.MoshiModule;
 import com.ballastlane.android.texasam.data.managers.remote.base.ApiServiceInterface;
 
-
 import dagger.Component;
 
 

@@ -52,9 +52,9 @@ open class ZipUtils {
 
     companion object {
 
-        private val MAC_OSX_FOLDER_NAME = "MACOSX"
+        private const val MAC_OSX_FOLDER_NAME = "MACOSX"
         val TAG = ZipUtils::class.java.simpleName
-        private val BUFFER = 2048
+        private const val BUFFER = 2048
 
         @Throws(FileNotFoundException::class)
         fun unzipFromPath(targetLocation: String, sourceLocation: String) {

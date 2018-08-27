@@ -5,19 +5,14 @@ import android.util.Log;
 import com.ballastlane.android.texasam.R;
 import com.ballastlane.android.texasam.data.entities.User;
 import com.ballastlane.android.texasam.data.managers.remote.base.ApiServiceInterface;
-import com.ballastlane.android.texasam.data.managers.remote.base.RestClient;
-import com.ballastlane.android.texasam.data.managers.remote.base.RestManagerPrivateService;
 import com.ballastlane.android.texasam.data.managers.remote.logon.LogonRequest;
 import com.ballastlane.android.texasam.data.managers.remote.logon.LogonResponse;
 import com.ballastlane.android.texasam.utils.App;
-
-import java.util.Timer;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
-import timber.log.Timber;
 
 /**
  * @author Daniela Perez danielaperez@kogimobile.com on 4/24/18.

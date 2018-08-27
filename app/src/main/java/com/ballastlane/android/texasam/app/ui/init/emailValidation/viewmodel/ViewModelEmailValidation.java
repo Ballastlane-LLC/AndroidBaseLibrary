@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModel;
 
 import com.ballastlane.android.texasam.data.repositories.Repository;
 
-import io.reactivex.Completable;
 import io.reactivex.Single;
 import okhttp3.ResponseBody;
 import retrofit2.Response;

@@ -15,6 +15,7 @@ import java.io.IOException
 interface ErrorMessageFactory {
 
     val moshi: Moshi
+
     val resources: Resources
 
     fun getErrorMessage(error: Throwable): String =

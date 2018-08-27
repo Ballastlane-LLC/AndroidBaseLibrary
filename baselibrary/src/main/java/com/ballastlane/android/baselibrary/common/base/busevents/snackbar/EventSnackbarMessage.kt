@@ -88,7 +88,7 @@ class EventSnackbarMessage {
 
     companion object {
 
-        val NONE_VIEW = -1
+        const val NONE_VIEW = -1
 
         val builder: EventSnackbarMessage.Builder
             get() = EventSnackbarMessage.Builder()

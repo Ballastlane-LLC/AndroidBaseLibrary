@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.ballastlane.android.baselibrary.common.base.BaseActivityInnerNavigation;
 import com.ballastlane.android.texasam.R;
-
 import com.ballastlane.android.texasam.databinding.ActivityRegisterBinding;
 
 

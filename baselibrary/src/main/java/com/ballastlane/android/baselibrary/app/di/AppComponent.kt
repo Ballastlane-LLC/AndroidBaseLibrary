@@ -2,8 +2,8 @@ package com.ballastlane.android.baselibrary.app.di
 
 import android.content.res.Resources
 import com.ballastlane.android.baselibrary.app.BaseApp
-import com.ballastlane.android.baselibrary.app.modules.MoshiModule
 import com.ballastlane.android.baselibrary.app.modules.GlideModule
+import com.ballastlane.android.baselibrary.app.modules.MoshiModule
 import com.bumptech.glide.RequestManager
 import com.squareup.moshi.Moshi
 import dagger.Component

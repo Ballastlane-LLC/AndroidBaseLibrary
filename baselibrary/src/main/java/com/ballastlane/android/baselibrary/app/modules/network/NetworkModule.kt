@@ -1,7 +1,6 @@
 package com.ballastlane.android.baselibrary.app.modules.network
 
 import android.content.Context
-import com.ballastlane.android.baselibrary.BuildConfig
 import com.ballastlane.android.baselibrary.app.di.*
 import com.ballastlane.android.baselibrary.utils.Constant
 import dagger.Module

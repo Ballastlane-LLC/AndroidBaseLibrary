@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.ballastlane.android.baselibrary.common.base.BaseActivityInnerNavigation;
 import com.ballastlane.android.texasam.R;
 import com.ballastlane.android.texasam.databinding.ActivityInitBinding;
-import com.ballastlane.android.texasam.databinding.FrgEmailvalidationBinding;
 import com.ballastlane.android.texasam.utils.PreferencesUtils;
 
 public class ActivityInit extends BaseActivityInnerNavigation {

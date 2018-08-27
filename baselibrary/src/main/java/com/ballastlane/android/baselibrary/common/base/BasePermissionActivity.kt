@@ -77,10 +77,11 @@ abstract class BasePermissionActivity : BaseActivity() {
         title.textSize = 18F
         alertDialog.setCancelable(false)
         alertDialog.setCustomTitle(title)
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, dialogPreview!!.buttonText, { dialog, _ ->
+        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, dialogPreview!!.buttonText) {
+            dialog, _ ->
             request()
             dialog.dismiss()
-        })
+        }
 
         alertDialog.show()
 
@@ -124,12 +125,12 @@ abstract class BasePermissionActivity : BaseActivity() {
             setCancelable(false)
             setTitle(title)
             setMessage(message)
-            setNeutralButton(buttonText, { dialog, _ ->
+            setNeutralButton(buttonText) { dialog, _ ->
                 if (required) {
                     request()
                 }
                 dialog.dismiss()
-            })
+            }
         }
         builder.show()
     }

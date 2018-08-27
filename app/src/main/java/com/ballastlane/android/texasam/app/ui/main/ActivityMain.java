@@ -1,21 +1,16 @@
 package com.ballastlane.android.texasam.app.ui.main;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.ballastlane.android.baselibrary.common.base.BaseActivityInnerNavigation;
-import com.ballastlane.android.baselibrary.common.base.busevents.snackbar.EventSnackbarMessage;
 import com.ballastlane.android.texasam.R;
 import com.ballastlane.android.texasam.app.ui.main.viewmodel.ViewModelActivityMain;
 import com.ballastlane.android.texasam.databinding.ActivityMainBinding;
-
-import org.greenrobot.eventbus.EventBus;
 
 public class ActivityMain extends BaseActivityInnerNavigation {
 

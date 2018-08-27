@@ -4,8 +4,6 @@ import com.ballastlane.android.texasam.data.entities.User;
 import com.ballastlane.android.texasam.data.managers.remote.logon.LogonRequest;
 import com.ballastlane.android.texasam.data.managers.remote.logon.LogonResponse;
 
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import okhttp3.ResponseBody;

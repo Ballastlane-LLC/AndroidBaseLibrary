@@ -2,12 +2,6 @@ package com.ballastlane.android.texasam.data.managers.remote.base;
 
 
 import com.ballastlane.android.baselibrary.model.BaseService;
-import com.ballastlane.android.texasam.data.entities.User;
-
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 /**
  * @author Daniela Perez danielaperez@kogimobile.com on 5/26/17.
  */

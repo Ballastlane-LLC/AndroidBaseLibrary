@@ -10,7 +10,9 @@ import java.util.*
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-abstract class BaseFilterAdapter<T, H : BaseAdapter.BaseViewHolder<*>>(diffCallback: DiffUtil.ItemCallback<T>) : BaseAdapter<T, H>(diffCallback), Filterable {
+abstract class BaseFilterAdapter<T, H : BaseAdapter.BaseViewHolder<*>>(diffCallback:
+                                                                       DiffUtil.ItemCallback<T>) :
+        BaseAdapter<T, H>(diffCallback), Filterable {
 
     private val TAG = "TAG_${BaseFilterAdapter::class.java.simpleName}"
 

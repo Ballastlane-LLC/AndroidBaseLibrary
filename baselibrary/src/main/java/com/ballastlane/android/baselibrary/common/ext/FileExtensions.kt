@@ -1,7 +1,10 @@
 package com.ballastlane.android.baselibrary.common.ext
 
 import android.content.Context
-import java.io.*
+import java.io.File
+import java.io.IOException
+import java.io.ObjectInputStream
+import java.io.ObjectOutputStream
 import java.net.URLConnection
 
 /**
@@ -22,9 +25,9 @@ fun String.saveObjectToDiskAsFile(context: Context, `object`: Any) {
 
 @Throws(IOException::class, ClassNotFoundException::class)
 fun String.getObjectFromDiskAsFile(context: Context): Any? {
-    var fis = context.openFileInput(this)
+    val fis = context.openFileInput(this)
     val `is` = ObjectInputStream(fis)
-    var `object` = `is`.readObject()
+    val `object` = `is`.readObject()
     `is`.close()
     return `object`
 }

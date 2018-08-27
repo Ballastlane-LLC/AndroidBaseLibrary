@@ -10,6 +10,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 /**
  * @author kogiandroid on 1/14/16.
  *         Modified by Julian Cardona 04/19/16.
+ *         Modified by Mariangela Salcedo 04/03/18 mariangelasalcedo@ballastlane.com)
+ *         Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 public class RestClientManager<T> {
 
@@ -61,9 +63,18 @@ public class RestClientManager<T> {
         }
     }
 
-    private void addApisServicesToRetrofit(ServiceConfiguration currentServiceConfiguration, Object apiServiceInterface) throws IllegalAccessException, InstantiationException {
-        BaseService apiService = (BaseService) currentServiceConfiguration.getApiServiceFactory().factory();
+    private void addApisServicesToRetrofit(ServiceConfiguration currentServiceConfiguration,
+                                           Object apiServiceInterface)
+            throws IllegalAccessException,
+            InstantiationException {
+
+        BaseService apiService = (BaseService)
+                currentServiceConfiguration
+                .getApiServiceFactory()
+                .factory();
+
         apiService.setApiServiceInterface(apiServiceInterface);
+
         apiServicesInstances.put(currentServiceConfiguration.getApiServiceClass(), apiService);
     }
 
@@ -75,5 +86,4 @@ public class RestClientManager<T> {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
-
 }

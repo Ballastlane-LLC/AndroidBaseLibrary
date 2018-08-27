@@ -1,18 +1,6 @@
 package com.ballastlane.android.texasam.data.managers.remote.base;
 
-import android.support.annotation.NonNull;
-
-import com.ballastlane.android.baselibrary.model.ApiServiceFactory;
 import com.ballastlane.android.baselibrary.model.RestClientManager;
-import com.ballastlane.android.baselibrary.model.ServiceConfiguration;
-import com.ballastlane.android.texasam.utils.PreferencesUtils;
-
-import java.io.IOException;
-
-import okhttp3.Interceptor;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.internal.http2.Header;
 
 /**
  * @author Daniela Perez danielaperez@kogimobile.com on 4/24/18.

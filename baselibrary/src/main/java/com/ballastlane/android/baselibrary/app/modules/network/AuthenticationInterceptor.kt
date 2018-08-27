@@ -11,5 +11,4 @@ class AuthenticationInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain?): Response? {
         return null
     }
-
 }
