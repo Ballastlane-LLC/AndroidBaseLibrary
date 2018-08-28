@@ -1,12 +1,12 @@
 package com.ballastlane.android.texasam.data.managers.remote.base;
 
 
-import com.ballastlane.android.baselibrary.model.BaseService;
+import com.ballastlane.android.baselibrary.model.BaseServiceRest;
 /**
  * @author Daniela Perez danielaperez@kogimobile.com on 5/26/17.
  */
 
-public class RestManagerPrivateService extends BaseService<ApiServiceInterface.Private> {
+public class RestManagerPrivateService extends BaseServiceRest<ApiServiceInterface.Private> {
 
     private static final String IMAGE_PART = "signature";
     private static final String MULTI_PART_FORM_DATA = "multipart/form-data";

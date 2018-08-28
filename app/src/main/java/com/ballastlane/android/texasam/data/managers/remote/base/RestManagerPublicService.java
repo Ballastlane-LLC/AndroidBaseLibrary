@@ -1,12 +1,12 @@
 package com.ballastlane.android.texasam.data.managers.remote.base;
 
-import com.ballastlane.android.baselibrary.model.BaseService;
+import com.ballastlane.android.baselibrary.model.BaseServiceRest;
 
 /**
  * @author Daniela Perez danielaperez@kogimobile.com on 5/26/17.
  */
 
-public class RestManagerPublicService extends BaseService<ApiServiceInterface> {
+public class RestManagerPublicService extends BaseServiceRest<ApiServiceInterface> {
 
     /**
      * @param apiServiceInterface

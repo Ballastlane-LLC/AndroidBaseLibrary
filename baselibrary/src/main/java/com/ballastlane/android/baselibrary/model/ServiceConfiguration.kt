@@ -25,18 +25,18 @@ import java.util.concurrent.TimeUnit
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 
-class ServiceConfiguration<S : BaseService<I>, I>
+class ServiceConfiguration<S : BaseServiceRest<I>, I>
 
 /**
  *
  * @param baseURL must be a valid URL
- * @param apiServiceFactory must extend from the BaseService
+ * @param apiServiceFactory must extend from the BaseServiceRest
  * @param apiInterfaceServiceFactory must be an interface
  */
 (val baseURL: String, val apiServiceFactory: ApiServiceFactory<S>,
  apiInterfaceServiceClass: Class<I>) {
     val interfaceClass: Class<I>
-    val apiServiceClass: Class<BaseService<I>>
+    val apiServiceClass: Class<BaseServiceRest<I>>
 
     var converter = GsonConverterFactory.create(GsonBuilder()
             .registerTypeHierarchyAdapter(Collection::class.java, CollectionTypedAdapter())

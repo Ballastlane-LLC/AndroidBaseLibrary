@@ -15,7 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  */
 public class RestClientManager<T> {
 
-    private Hashtable<Class, BaseService> apiServicesInstances = new Hashtable<>();
+    private Hashtable<Class, BaseServiceRest> apiServicesInstances = new Hashtable<>();
 
     public RestClientManager(ServiceConfiguration... serviceConfigurations) {
         setServiceConfigurations(serviceConfigurations);
@@ -30,7 +30,7 @@ public class RestClientManager<T> {
         return baseServiceClass.cast(apiServicesInstances.get(baseServiceClass));
     }
 
-    public Collection<BaseService> getServices() {
+    public Collection<BaseServiceRest> getServices() {
         return apiServicesInstances.values();
     }
 
@@ -68,7 +68,7 @@ public class RestClientManager<T> {
             throws IllegalAccessException,
             InstantiationException {
 
-        BaseService apiService = (BaseService)
+        BaseServiceRest apiService = (BaseServiceRest)
                 currentServiceConfiguration
                 .getApiServiceFactory()
                 .factory();

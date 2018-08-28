@@ -3,13 +3,13 @@ ext {
     projectDesc = 'Android Team internal base library'
 
     packageDesc = 'Android Team internal base library'
-    versionDesc = 'Added optional dialog preview in permission activity'
+    versionDesc = 'Added base service'
 
     repoUrl = 'https://github.com/Ballastlane-LLC/AndroidBaseLibrary/'
 
     mavenGroup = 'com.ballastlane.android'
     mavenArtifactId = 'baselibrary'
-    mavenVersion = '1.4.0'
+    mavenVersion = '1.4.1'
 
     bintrayOrg = 'ballastlane'
 }
