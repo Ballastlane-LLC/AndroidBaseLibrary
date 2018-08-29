@@ -1,9 +1,8 @@
 package com.ballastlane.android.baselibrary.app
 
-import android.app.Activity
-import android.content.Context
+import android.content.ComponentCallbacks2
+import android.content.pm.PackageManager
 import android.support.multidex.MultiDexApplication
-import android.view.inputmethod.InputMethodManager
 import com.ballastlane.android.baselibrary.R
 import com.ballastlane.android.baselibrary.app.di.AppComponent
 import com.ballastlane.android.baselibrary.app.di.AppModule
@@ -13,11 +12,12 @@ import com.ballastlane.android.baselibrary.app.modules.network.NetworkModule
 import timber.log.Timber
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
+
 /**
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
-open class BaseApp : MultiDexApplication() {
+abstract class BaseApp : MultiDexApplication() {
 
     private val TAG = "TAG_${BaseApp::class.java.simpleName}"
 
@@ -25,6 +25,10 @@ open class BaseApp : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
+
+        instance = this
+
+        status = StatusApp.FOREGROUND
 
         appModule = AppModule(this)
 
@@ -52,20 +56,47 @@ open class BaseApp : MultiDexApplication() {
                 })
     }
 
+    @Synchronized
+    override fun onTrimMemory(level: Int) {
+        if (level == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
+            onBackground()
+            status = StatusApp.BACKGROUND
+        }
+        super.onTrimMemory(level)
+    }
+
+    abstract fun onBackground()
+
+    abstract fun onForeground()
+
+    private enum class StatusApp {
+        BACKGROUND,
+        FOREGROUND
+    }
+
     companion object {
+
         lateinit var component: AppComponent
 
-        fun closeKeyboard(activity: Activity?) {
-            activity?.let {
-                val view = activity.currentFocus
+        private lateinit var status: StatusApp
 
-                view?.let {
-                    val inputManager = activity
-                            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    inputManager.hideSoftInputFromWindow(view.windowToken,
-                            InputMethodManager.HIDE_NOT_ALWAYS)
-                }
+        private lateinit var instance: BaseApp
+
+        @Synchronized
+        fun onResumeActivity() {
+            if (status === StatusApp.BACKGROUND) {
+                instance.onForeground()
             }
+            status = StatusApp.FOREGROUND
+        }
+
+        fun getVersionName(): String {
+            return try {
+                instance.packageManager.getPackageInfo(instance.packageName, 0).versionName
+            } catch (e: PackageManager.NameNotFoundException) {
+                ""
+            }
+
         }
     }
 }

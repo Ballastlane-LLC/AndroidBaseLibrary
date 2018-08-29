@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.ballastlane.android.baselibrary.app.BaseApp
 import com.ballastlane.android.baselibrary.common.base.busevents.alert.EventAlertDialog
 import com.ballastlane.android.baselibrary.common.base.busevents.progress.EventProgressDialog
 import com.ballastlane.android.baselibrary.common.base.busevents.snackbar.EventSnackbarMessage
@@ -66,6 +67,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
         initVars()
     }
 
+    override fun onResume() {
+        super.onResume()
+        BaseApp.onResumeActivity()
+    }
+
     override fun onStart() {
         super.onStart()
         initViews()
@@ -110,7 +116,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
     @CallSuper
     @Subscribe
     override fun onProgressDialogEvent(event: EventProgressDialog) {
-            buildProgressDialog(event)
+        buildProgressDialog(event)
     }
 
     private fun buildProgressDialog(event: EventProgressDialog) {
@@ -189,5 +195,16 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
     fun sendSuccessResult(data: Intent) {
         setResult(Activity.RESULT_OK, data)
         finish()
+    }
+
+    fun closeKeyboard() {
+        val view = currentFocus
+
+        view?.let {
+            val inputManager = this
+                    .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(view.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 }
