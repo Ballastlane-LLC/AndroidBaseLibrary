@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-  implementation "com.ballastlane.android:baselibrary:1.0.1"
+  implementation "com.ballastlane.android:baselibrary:1.4.1"
 }
 ```
 
