@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.view.ViewGroup
 import com.ballastlane.android.baselibrary.common.base.BaseActivity
+import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 9/17/18.
@@ -27,6 +28,7 @@ abstract class MVPContract {
     interface Presenter {
         val view: View
         val model: Model
+        val compositeDisposable: CompositeDisposable
         fun onCreate()
         fun onDestroy()
     }

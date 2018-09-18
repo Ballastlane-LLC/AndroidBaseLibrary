@@ -9,7 +9,7 @@ import com.ballastlane.android.baselibrary.common.base.recyclerview.BaseAdapter
  * Copyright (c) 2018 Ballast Lane Applications LLC. All rights reserved.
  */
 abstract class BaseAdapterPaged<ITEM : DiffCallback.DiffItemUniqueId<TYPE_ID>, TYPE_ID>(
-        private val listener: OnItemSelected<ITEM>,
+        private val listener: OnItemSelected<ITEM>?,
         diffCallback: DiffCallback<ITEM, TYPE_ID>
 ) : PagedListAdapter<ITEM, RecyclerView.ViewHolder>(diffCallback) {
 
@@ -17,7 +17,7 @@ abstract class BaseAdapterPaged<ITEM : DiffCallback.DiffItemUniqueId<TYPE_ID>, T
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            getItem(position)?.let { it -> listener.onItemSelected(it) }
+            getItem(position)?.let { it -> listener?.onItemSelected(it) }
         }
     }
 
