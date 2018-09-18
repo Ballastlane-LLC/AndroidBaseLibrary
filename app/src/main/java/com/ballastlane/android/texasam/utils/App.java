@@ -44,5 +44,15 @@ public class App extends BaseApp {
                     }
                 });
     }
+
+    @Override
+    public void onBackground() {
+
+    }
+
+    @Override
+    public void onForeground() {
+
+    }
 }
 
