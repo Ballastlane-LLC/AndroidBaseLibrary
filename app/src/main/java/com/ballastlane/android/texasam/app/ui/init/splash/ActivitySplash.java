@@ -83,4 +83,8 @@ public class ActivitySplash extends BaseActivity {
         );
     }
 
+    @Override
+    protected void initializeComponent() {
+
+    }
 }

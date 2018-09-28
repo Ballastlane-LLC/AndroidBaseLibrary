@@ -51,4 +51,8 @@ public class ActivityRegister extends BaseActivityInnerNavigation {
     }
 
 
+    @Override
+    protected void initializeComponent() {
+
+    }
 }

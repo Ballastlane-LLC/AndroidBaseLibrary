@@ -50,4 +50,8 @@ public class ActivityInit extends BaseActivityInnerNavigation {
         getNavigationControllerInit().navigateToSection2();
     }
 
+    @Override
+    protected void initializeComponent() {
+
+    }
 }

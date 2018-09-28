@@ -98,4 +98,8 @@ public class ActivityMain extends BaseActivityInnerNavigation {
     }
 
 
+    @Override
+    protected void initializeComponent() {
+
+    }
 }
