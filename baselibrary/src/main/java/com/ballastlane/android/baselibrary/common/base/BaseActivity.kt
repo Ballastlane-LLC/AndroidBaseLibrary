@@ -28,6 +28,7 @@ import com.ballastlane.android.baselibrary.common.ext.empty
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.Subscribe
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 /**
  * Created by Mariangela Salcedo (mariangelasalcedo@ballastlane.com) on 3/8/18.
@@ -63,6 +64,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeComponent()
         initLifeCycleObservers()
         initVars()
     }
@@ -101,7 +103,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
         this.navigationController = navigationController
     }
 
-    protected abstract fun initVars()
+    protected fun initVars() {}
 
 
     private fun initLifeCycleObservers() {
@@ -109,9 +111,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
         lifecycle.addObserver(busLifeObserver)
     }
 
-    protected abstract fun initViews()
+    protected fun initViews() {}
 
-    protected abstract fun initListeners()
+    protected fun initListeners() {}
+
+    protected abstract fun initializeComponent()
 
     @CallSuper
     @Subscribe
@@ -130,6 +134,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
                 if (event.message.empty()) getString(event.messageId) else event.message
         )
         progress!!.show()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     @CallSuper

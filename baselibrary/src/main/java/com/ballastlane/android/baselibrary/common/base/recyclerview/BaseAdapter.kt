@@ -12,7 +12,7 @@ abstract class BaseAdapter<ITEM>(
 
     private val TAG = "TAG_${BaseAdapter::class.java.simpleName}"
 
-    private val itemList: MutableList<ITEM>? = null
+    var itemList: MutableList<ITEM>? = arrayListOf()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
@@ -22,7 +22,7 @@ abstract class BaseAdapter<ITEM>(
 
     abstract fun refreshItems(itemList: MutableList<ITEM>?)
 
-    private fun getItem(position: Int): ITEM? {
+    fun getItem(position: Int): ITEM? {
         itemList?.let { return it[position] }
         return null
     }
