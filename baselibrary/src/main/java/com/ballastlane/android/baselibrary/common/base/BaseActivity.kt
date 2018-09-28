@@ -103,7 +103,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
         this.navigationController = navigationController
     }
 
-    protected fun initVars() {}
+    protected open fun initVars() {}
 
 
     private fun initLifeCycleObservers() {
@@ -111,9 +111,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseEventBusListener, Lifecyc
         lifecycle.addObserver(busLifeObserver)
     }
 
-    protected fun initViews() {}
+    protected open fun initViews() {}
 
-    protected fun initListeners() {}
+    protected open fun initListeners() {}
 
     protected abstract fun initializeComponent()
 

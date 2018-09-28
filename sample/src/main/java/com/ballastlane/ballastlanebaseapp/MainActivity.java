@@ -101,17 +101,7 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    protected void initVars() {
-
-    }
-
-    @Override
-    protected void initViews() {
-
-    }
-
-    @Override
-    protected void initListeners() {
+    protected void initializeComponent() {
 
     }
 }
